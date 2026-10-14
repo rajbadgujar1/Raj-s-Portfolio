@@ -1,0 +1,2678 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raj Badgujar — Systems & Software Developer · The Quantum Celestial Fold</title>
+  <meta name="description" content="Portfolio of Raj Badgujar — Information Technology Undergraduate & Systems Developer. Engineered with deep-space astrometry, gravitational lensing physics, and precision software architecture." />
+  <meta name="author" content="Raj Badgujar" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Raj Badgujar — Systems & Software Developer · Quantum Celestial Fold" />
+  <meta property="og:description" content="Engineering robust software architectures, efficient systems, and scalable full-stack applications with clean, disciplined code." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23030408'/><ellipse cx='50' cy='50' rx='42' ry='18' fill='none' stroke='%23C19A6B' stroke-width='1.8' stroke-dasharray='4 2'/><circle cx='50' cy='50' r='5' fill='%23F1F5F9'/><circle cx='76' cy='43' r='3' fill='%238C5B3E'/></svg>" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            void: {
+              black: '#030408',
+              space: '#080B14',
+              obsidian: '#0B0D16',
+              card: 'rgba(9, 13, 24, 0.72)',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderHover: 'rgba(193, 154, 107, 0.45)',
+            },
+            dust: {
+              gold: '#C19A6B',
+              bronze: '#8C5B3E',
+              copper: '#4E2F20',
+              crimson: '#3A1A1E',
+              ambient: '#6B1F2A',
+            },
+            telemetry: {
+              bright: '#F1F5F9',
+              slate: '#94A3B8',
+              dim: '#64748B',
+              dark: '#334155',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Global Base */
+    body {
+      background-color: #030408;
+      color: #94A3B8;
+      overflow-x: hidden;
+      cursor: none; /* Controlled by Dimension-Warp Cursor */
+    }
+    @media (hover: none) and (pointer: coarse) {
+      body { cursor: auto; }
+      #warp-cursor, #warp-cursor-dot { display: none !important; }
+    }
+
+    /* Fine Astrometry Coordinate Grid */
+    .astrometry-grid {
+      background-size: 80px 80px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Minimal Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030408;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e2538;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Staggered Gravity Well Entrance */
+    .gravity-well {
+      opacity: 0;
+      transform: translateY(40px) scale(0.96);
+      filter: blur(12px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+    .gravity-well.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+
+    /* Quantum Frosted Glassmorphism Card */
+    .quantum-card {
+      position: relative;
+      background: rgba(9, 13, 24, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+      will-change: transform;
+      overflow: hidden;
+    }
+    .quantum-card:hover {
+      border-color: rgba(193, 154, 107, 0.35);
+      box-shadow: 0 16px 40px -10px rgba(3, 4, 8, 0.9), 0 0 30px rgba(193, 154, 107, 0.08);
+    }
+
+    /* Atmospheric Lens Flare inside Cards on Hover */
+    .quantum-card .card-flare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(
+        380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+        rgba(193, 154, 107, 0.12),
+        rgba(140, 91, 62, 0.06) 40%,
+        transparent 70%
+      );
+      transition: opacity 0.4s ease;
+    }
+    .quantum-card:hover .card-flare {
+      opacity: 1;
+    }
+
+    /* Perimeter Laser-Path Sweep SVG runner on Hover */
+    .laser-border-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .laser-path-line {
+      fill: none;
+      stroke: #C19A6B;
+      stroke-width: 1.5;
+      stroke-dasharray: 60 400;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .quantum-card:hover .laser-path-line {
+      opacity: 1;
+      animation: laserSweep 2.8s linear infinite;
+    }
+    @keyframes laserSweep {
+      from { stroke-dashoffset: 460; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Dimension-Warp Cursor Elements */
+    #warp-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      margin-left: -18px;
+      margin-top: -18px;
+      border: 1.5px solid rgba(193, 154, 107, 0.65);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      box-shadow: 0 0 16px rgba(193, 154, 107, 0.25);
+      transition: transform 0.08s ease-out, border-color 0.2s ease, width 0.22s cubic-bezier(0.16, 1, 0.3, 1), height 0.22s cubic-bezier(0.16, 1, 0.3, 1), margin 0.22s, box-shadow 0.2s;
+    }
+    #warp-cursor.cursor-hover {
+      width: 52px;
+      height: 52px;
+      margin-left: -26px;
+      margin-top: -26px;
+      border-color: rgba(6, 182, 212, 0.9);
+      box-shadow: 0 0 28px rgba(6, 182, 212, 0.5), inset 0 0 14px rgba(6, 182, 212, 0.25);
+    }
+    #warp-cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      margin-top: -3px;
+      background: #F1F5F9;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      box-shadow: 0 0 8px #F1F5F9, 0 0 14px #06b6d4;
+    }
+    #warp-cursor-telemetry {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-left: 28px;
+      margin-top: -12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: #38bdf8;
+      background: rgba(3, 4, 8, 0.85);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 2.5px 7px;
+      border-radius: 5px;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(6px);
+      pointer-events: none;
+      z-index: 9999;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      transition: color 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+    #warp-cursor-telemetry.projecting-term {
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.6);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.45);
+    }
+
+    /* Holographic Scanner Beam for Portrait */
+    @keyframes scanBeam {
+      0% { top: -5%; opacity: 0; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.9; }
+      100% { top: 105%; opacity: 0; }
+    }
+    .animate-scan {
+      animation: scanBeam 2.4s ease-in-out infinite;
+    }
+
+    /* Gravitational Singularity Collapse & Wavefront Pulse */
+    .singularity-wave {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(193, 154, 107, 0.8);
+      box-shadow: 0 0 25px rgba(193, 154, 107, 0.6), inset 0 0 15px rgba(140, 91, 62, 0.4);
+      pointer-events: none;
+      z-index: 9998;
+      animation: singularityExpand 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes singularityExpand {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(18);
+        opacity: 0;
+      }
+    }
+
+    /* Nav Underline Draw */
+    .nav-draw-link {
+      position: relative;
+    }
+    .nav-draw-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #C19A6B;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-draw-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Coordinate Section Divider */
+    .coordinate-divider {
+      position: relative;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 25%, rgba(193, 154, 107, 0.35) 50%, rgba(255, 255, 255, 0.08) 75%, transparent 100%);
+    }
+
+    /* 3D Micro-Tilt Perspective Container */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+    }
+
+    /* Fullscreen Cosmic Intro Page & Transition */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: auto;
+      background: radial-gradient(circle at 50% 50%, rgba(12, 16, 28, 0.96), #030408 92%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #intro-overlay.intro-exit {
+      opacity: 0;
+      transform: scale(1.12);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+    #intro-card {
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease;
+    }
+    #intro-overlay.intro-exit #intro-card {
+      transform: scale(0.92) translateY(-25px);
+      opacity: 0;
+    }
+
+    #main-portfolio-wrapper {
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+    }
+    .portfolio-revealing {
+      animation: portfolioResolve 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes portfolioResolve {
+      0% {
+        opacity: 0.2;
+        transform: scale(0.985) translateY(20px);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-dust-gold/30 selection:text-white antialiased">
+
+  <!-- Dimension-Warp Cursor Elements -->
+  <div id="warp-cursor"></div>
+  <div id="warp-cursor-dot"></div>
+  <div id="warp-cursor-telemetry">[RA 17h · DEC -29°]</div>
+
+  <!-- FULLSCREEN COSMIC INTRO PAGE -->
+  <div id="intro-overlay" class="p-4 sm:p-6">
+    <!-- Starfield Warp Canvas in the background -->
+    <canvas id="warp-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <!-- Ambient Deep-Space Cosmic Glows -->
+    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_75%_75%_at_50%_50%,rgba(193,154,107,0.1),rgba(3,4,8,0.96))]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-dust-crimson/15 via-dust-copper/15 to-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <!-- Astrometric Background Telemetry Grid Overlay -->
+    <div class="absolute inset-0 astrometry-grid opacity-25 pointer-events-none"></div>
+
+    <!-- Floating Background Telemetry Stamps -->
+    <div class="absolute top-6 left-6 font-mono text-[9px] text-telemetry-dim/40 pointer-events-none hidden sm:block">
+      ASTROMETRIC GATEWAY: V4.2<br>
+      COORD: RA 17h 45m · DEC -29° 00'
+    </div>
+    <div class="absolute top-6 right-6 font-mono text-[9px] text-telemetry-dim/40 pointer-events-none hidden sm:block text-right">
+      TARGET: PORTFOLIO MAIN MATRIX<br>
+      STATUS: STANDBY // SYNCHRONIZED
+    </div>
+
+    <!-- Interactive Intro Card Container -->
+    <div id="intro-card" class="relative z-10 max-w-xl w-full mx-auto p-6 sm:p-9 rounded-3xl bg-void-obsidian/85 border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_40px_rgba(193,154,107,0.18)] backdrop-blur-2xl text-center flex flex-col items-center">
+      
+      <!-- Top Telemetry Protocol Pill -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-dust-gold/10 border border-dust-gold/30 text-[10.5px] font-mono text-dust-gold shadow-[0_0_15px_rgba(193,154,107,0.2)] mb-4 animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]"></span>
+        <span class="font-bold tracking-widest uppercase">ASTROMETRIC GATEWAY // ONLINE</span>
+        <span class="text-white/20">|</span>
+        <span class="text-telemetry-bright font-mono">SYS.VER 4.2</span>
+      </div>
+
+      <!-- Orbital Avatar Centerpiece with Photo -->
+      <div class="relative my-2 group cursor-pointer" onclick="enterPortfolio()" title="Click to Enter Portfolio">
+        <!-- Rotating Orbital Outer Ring -->
+        <div class="absolute -inset-4 rounded-full border border-dashed border-cyan-400/50 animate-spin" style="animation-duration: 22s;"></div>
+        <!-- Inner Counter-Rotating Golden Ring -->
+        <div class="absolute -inset-2 rounded-full border border-dust-gold/45 animate-spin" style="animation-duration: 15s; animation-direction: reverse;"></div>
+        <!-- Orbiting Satellite Dot -->
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#22d3ee]"></div>
+        
+        <!-- Portrait Container -->
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-white/30 shadow-[0_0_30px_rgba(193,154,107,0.45)] relative z-10 bg-void-black">
+          <img src="./raj-badgujar.jpg" alt="Raj Badgujar" class="w-full h-full object-cover object-[center_18%] group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-void-black/60 via-transparent to-transparent"></div>
+        </div>
+
+        <!-- Verified Telemetry Badge -->
+        <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-[9px] font-mono text-emerald-300 font-bold tracking-wider whitespace-nowrap shadow-md">
+          ● VERIFIED
+        </div>
+      </div>
+
+      <!-- Main Headline: WELCOME TO RAJ'S PORTFOLIO -->
+      <div class="mt-4 mb-2">
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+          <span class="bg-gradient-to-r from-white via-amber-200 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(251,191,36,0.25)]">
+            WELCOME TO RAJ'S PORTFOLIO
+          </span>
+        </h1>
+        <p class="text-xs sm:text-sm font-mono text-telemetry-dim mt-2 tracking-wide">
+          <span class="text-telemetry-bright font-semibold">Raj Badgujar</span> · Systems &amp; Software Developer · B.Tech (IT)
+        </p>
+      </div>
+
+      <!-- Credential Highlights Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 my-3 max-w-md">
+        <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono text-amber-300 shadow-[0_0_8px_rgba(245,158,11,0.15)]">
+          ⭐ CGPA: 8.73 / 10.00
+        </span>
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300 shadow-[0_0_8px_rgba(16,185,129,0.15)]">
+          🎯 CET: 90.00 %ile
+        </span>
+        <span class="px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-[11px] font-mono text-cyan-300 shadow-[0_0_8px_rgba(6,182,212,0.15)]">
+          📈 SSC: 89% · HSC: 78.17%
+        </span>
+        <span class="px-2.5 py-1 rounded-lg bg-fuchsia-500/10 border border-fuchsia-500/30 text-[11px] font-mono text-fuchsia-300 shadow-[0_0_8px_rgba(217,70,239,0.15)]">
+          ⚙️ C · Java · SQL · React · DSA
+        </span>
+      </div>
+
+      <!-- Interactive CTA Section -->
+      <div class="w-full max-w-sm mt-3 flex flex-col items-center gap-3">
+        <!-- Main Enter Button -->
+        <button id="enter-portfolio-btn" onclick="enterPortfolio()" class="w-full group relative px-6 py-3.5 rounded-xl font-mono text-xs sm:text-sm font-bold tracking-widest uppercase overflow-hidden bg-gradient-to-r from-dust-gold via-amber-400 to-cyan-400 text-void-black shadow-[0_0_30px_rgba(193,154,107,0.4)] hover:shadow-[0_0_45px_rgba(6,182,212,0.6)] transform hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <span>ENTER PORTFOLIO</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+          </span>
+          <div class="absolute inset-0 bg-white/25 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+        </button>
+
+        <!-- Auto Transition Progress Countdown Bar -->
+        <div class="w-full flex flex-col items-center gap-1.5">
+          <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+            <div id="intro-progress-bar" class="h-full bg-gradient-to-r from-dust-gold to-cyan-400 transition-all duration-100 ease-linear" style="width: 0%;"></div>
+          </div>
+          <div class="w-full flex items-center justify-between text-[10px] font-mono text-telemetry-dim">
+            <span id="intro-countdown-text">Auto-entering in 4.5s...</span>
+            <span class="hidden sm:inline">Press [ENTER] to proceed</span>
+            <button onclick="enterPortfolio()" class="hover:text-dust-gold underline transition-colors cursor-pointer">Skip ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Astrometric Coordinate Footer -->
+      <div class="mt-4 font-mono text-[9px] text-telemetry-dim/50 tracking-wider flex items-center gap-2">
+        <span>COORDINATES: RA 17h 45m · DEC -29° 00'</span>
+        <span>•</span>
+        <span>MAHARASHTRA, INDIA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE ASTROMETRIC CANVAS (MILKY WAY, GRAVITATIONAL LENSING & QUANTUM PARTICLES) -->
+  <canvas id="astrometric-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Faint Astrometric Telemetry Grid Overlay -->
+  <div class="fixed inset-0 astrometry-grid pointer-events-none z-0"></div>
+
+  <!-- Ambient Astrometric Celestial Stamps -->
+  <div class="fixed top-20 right-6 font-mono text-[9px] text-telemetry-dim/40 pointer-events-none z-0 hidden lg:block text-right leading-tight select-none">
+    CELESTIAL FOLD: J2000.0 [RA 17h 45m 40s · DEC -29° 00' 28"]<br>
+    GRAVITATIONAL LENS: g=9.82 m/s² · DRIFT: 220 KM/S<br>
+    ASTROMETRIC TELEMETRY ENGINE · VER 4.2
+  </div>
+  <div class="fixed bottom-6 left-6 font-mono text-[9px] text-telemetry-dim/40 pointer-events-none z-0 hidden lg:block leading-tight select-none">
+    TERRA ORBIT: 1.000 AU · ANOMALY: ν=102.4°<br>
+    SOL RADIAL VELOCITY: -0.42 KM/S
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-void-obsidian/95 border border-white/10 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 text-xs font-mono text-telemetry-bright backdrop-blur-xl">
+    <span class="w-2 h-2 rounded-full bg-dust-gold animate-ping"></span>
+    <span id="toast-message">Coordinates copied</span>
+  </div>
+
+  <!-- MAIN PORTFOLIO WRAPPER (TARGET FOR SEAMLESS ENTRY REVEAL) -->
+  <div id="main-portfolio-wrapper" class="relative z-10 w-full min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-void-black/80 border-b border-void-border transition-colors">
+      <div class="max-w-5xl mx-auto px-6 h-18 flex items-center justify-between">
+        
+        <!-- Brand Astrometry Monogram -->
+        <a href="#home" class="nav-singularity-link group flex items-center gap-3.5 py-4">
+          <span class="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center font-mono text-xs font-semibold text-telemetry-bright group-hover:border-dust-gold/50 transition-all shadow-sm">
+            <svg class="w-4 h-4 text-dust-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <ellipse cx="12" cy="12" rx="10" ry="4" stroke-dasharray="2 2" transform="rotate(-25 12 12)"/>
+              <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+              <circle cx="18" cy="8.5" r="1.5" fill="#F1F5F9"/>
+            </svg>
+          </span>
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold tracking-tight text-telemetry-bright group-hover:text-dust-gold transition-colors">
+              Raj Badgujar
+            </span>
+            <span class="text-[11px] font-mono text-telemetry-dim">
+              Systems & Software Developer
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Items with Underline Draw -->
+        <nav class="hidden md:flex items-center gap-8 text-xs font-mono text-telemetry-slate">
+          <a href="#about" class="nav-singularity-link nav-draw-link hover:text-telemetry-bright transition-colors py-1">About</a>
+          <a href="#skills" class="nav-singularity-link nav-draw-link hover:text-telemetry-bright transition-colors py-1">Skills</a>
+          <a href="#projects" class="nav-singularity-link nav-draw-link hover:text-telemetry-bright transition-colors py-1">Projects</a>
+          <a href="#credentials" class="nav-singularity-link nav-draw-link hover:text-telemetry-bright transition-colors py-1">Credentials</a>
+          <a href="#contact" class="nav-singularity-link nav-draw-link hover:text-telemetry-bright transition-colors py-1">Contact</a>
+        </nav>
+
+        <!-- Magnetic Action Buttons -->
+        <div class="flex items-center gap-2.5">
+          <!-- Replay Intro Button -->
+          <button onclick="replayIntro()" title="Replay Cosmic Intro Sequence" class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono px-3 py-1.5 rounded-lg bg-dust-gold/10 hover:bg-dust-gold/20 text-dust-gold border border-dust-gold/30 hover:border-dust-gold/60 transition-all cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            <span>Intro</span>
+          </button>
+
+          <a href="mailto:rajbadgujar450@gmail.com" class="magnetic-btn hidden sm:inline-flex items-center gap-2 text-xs font-mono font-medium px-4 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] text-telemetry-bright border border-white/10 hover:border-dust-gold/40 transition-all">
+            <span>Get in Touch</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-telemetry-dim"></i>
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-telemetry-slate hover:text-white">
+            <i data-lucide="menu" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-b border-void-border bg-void-black/98 px-6 py-4 space-y-3 font-mono text-xs backdrop-blur-2xl">
+        <button onclick="replayIntro()" class="block w-full text-left text-dust-gold hover:text-amber-300 py-1 mobile-link flex items-center gap-2">
+          <span>↺</span> Replay Intro Sequence
+        </button>
+        <a href="#about" class="block text-telemetry-slate hover:text-dust-gold py-1 mobile-link">About</a>
+        <a href="#skills" class="block text-telemetry-slate hover:text-dust-gold py-1 mobile-link">Skills</a>
+        <a href="#projects" class="block text-telemetry-slate hover:text-dust-gold py-1 mobile-link">Projects</a>
+        <a href="#credentials" class="block text-telemetry-slate hover:text-dust-gold py-1 mobile-link">Credentials</a>
+        <a href="#contact" class="block text-telemetry-slate hover:text-dust-gold py-1 mobile-link">Contact</a>
+      </div>
+    </header>
+
+  <!-- MAIN VIEWPORT CONTAINER (PARALLAX TIERS) -->
+  <main id="viewport-content" class="max-w-5xl mx-auto px-6 py-16 md:py-24 relative z-10 space-y-32">
+
+    <!-- HERO SECTION: PROFILE & THE QUANTUM SOLAR ORBIT MODEL -->
+    <section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-2 gravity-well in-view">
+      
+      <!-- Left Column: Typography & Magnetic CTAs (7 Cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Status Pill: Vibrant Emerald & Gold Coordinates with CGPA -->
+        <div class="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] backdrop-blur-md">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-amber-300 font-bold px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 shadow-[0_0_10px_rgba(245,158,11,0.2)]">CGPA: 8.73 / 10.00</span>
+          <span class="text-white/15">•</span>
+          <span class="text-dust-gold font-medium">1.000 AU HELIOCENTRIC</span>
+          <span class="text-white/15">•</span>
+          <span class="text-slate-200">Open for Internships & Software Roles</span>
+        </div>
+
+        <!-- Astrometric Identity Header: Portrait Frame + Headline -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-1">
+          <!-- Astrometric Orbital Portrait Frame -->
+          <div class="relative shrink-0 group cursor-pointer" data-tilt>
+            <!-- Rotating Orbital Outer Ring -->
+            <div class="absolute -inset-3.5 rounded-2xl border border-dashed border-cyan-400/40 animate-spin" style="animation-duration: 26s;"></div>
+            <!-- Inner Glowing Starlight Ring -->
+            <div class="absolute -inset-1 rounded-2xl border border-dust-gold/50 shadow-[0_0_20px_rgba(193,154,107,0.3)] group-hover:border-cyan-400 group-hover:shadow-[0_0_25px_rgba(6,182,212,0.45)] transition-all"></div>
+            <!-- Orbiting Satellite Telemetry Marker -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]"></div>
+            <!-- Photo Container -->
+            <div class="w-28 h-32 sm:w-36 sm:h-40 rounded-xl overflow-hidden border border-white/20 relative z-10 bg-void-obsidian shadow-2xl">
+              <img src="./raj-badgujar.jpg" alt="Raj Badgujar" class="w-full h-full object-cover object-[center_18%] group-hover:scale-108 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-void-black/75 via-transparent to-transparent pointer-events-none"></div>
+              <!-- Hologram Scanline Beam -->
+              <div class="absolute inset-x-0 h-[2px] bg-cyan-400 shadow-[0_0_10px_#06b6d4] opacity-0 group-hover:opacity-100 transition-opacity animate-scan"></div>
+            </div>
+            <!-- Telemetry Sub-Tag Badge -->
+            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-void-obsidian/95 border border-cyan-400/60 text-[9px] font-mono text-cyan-300 font-bold tracking-wider whitespace-nowrap shadow-lg">
+              RAJ BADGUJAR · 8.73
+            </div>
+          </div>
+
+          <!-- Headline & Subtitle -->
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-white via-amber-100 to-cyan-200 bg-clip-text text-transparent leading-[1.08]">
+              Raj Badgujar
+            </h1>
+            <p class="text-sm sm:text-base font-normal text-slate-300 leading-relaxed">
+              <span class="text-cyan-300 font-semibold">Information Technology Undergraduate</span> <br class="hidden sm:inline">
+              <span class="text-dust-gold">•</span> <span class="text-purple-300 font-semibold">Systems & Software Developer</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-telemetry-slate text-sm sm:text-base leading-relaxed max-w-xl font-sans">
+          Engineering robust software architectures, efficient systems, and scalable full-stack applications with clean, disciplined code.
+        </p>
+
+        <!-- Coordinates, Academic Metrics & Location Row -->
+        <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono pt-1">
+          <span class="flex items-center gap-1.5 text-amber-300 font-semibold bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/25 shadow-[0_0_10px_rgba(245,158,11,0.15)]">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+            CGPA: 8.73
+          </span>
+          <span class="flex items-center gap-1.5 text-cyan-300 font-semibold bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/25">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-cyan-400"></i>
+            CET: 90 %ile
+          </span>
+          <span class="flex items-center gap-1.5 text-emerald-300 font-semibold bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/25">
+            10th SSC: 89%
+          </span>
+          <span class="flex items-center gap-1.5 text-sky-300 font-semibold bg-sky-500/10 px-2.5 py-1 rounded border border-sky-500/25">
+            12th HSC: 78.17%
+          </span>
+          <span class="flex items-center gap-1.5 text-slate-300 font-sans text-[11px] bg-white/[0.03] px-2.5 py-1 rounded border border-white/10">
+            <i data-lucide="compass" class="w-3.5 h-3.5 text-dust-gold"></i>
+            Maharashtra, India (Open to Remote / Relocation)
+          </span>
+        </div>
+
+        <!-- Action Buttons with Visible Colorful Icons -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-3">
+          <a href="#projects" class="magnetic-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-white via-slate-100 to-amber-100 text-void-black hover:bg-white text-xs font-mono font-semibold shadow-[0_0_20px_rgba(193,154,107,0.35)] hover:shadow-[0_0_25px_rgba(193,154,107,0.55)] transition-all">
+            <span>Explore Projects</span>
+            <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+          </a>
+
+          <button onclick="copyEmail()" class="magnetic-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] text-telemetry-bright border border-white/10 hover:border-dust-gold/60 text-xs font-mono hover:shadow-[0_0_15px_rgba(193,154,107,0.3)] transition-all">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-dust-gold"></i>
+            <span>Copy Email</span>
+          </button>
+
+          <a href="mailto:rajbadgujar450@gmail.com" class="p-2.5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-rose-400/60 hover:bg-rose-500/10 text-rose-400 hover:text-rose-300 hover:shadow-[0_0_15px_rgba(244,63,94,0.35)] transition-all" title="Send Direct Email">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+
+          <!-- Visible GitHub Icon SVG with Cyan Glow -->
+          <a href="https://github.com/rajbadgujar1" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-cyan-400/60 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.35)] transition-all flex items-center justify-center" title="GitHub Forge">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+
+          <!-- Visible LinkedIn Icon SVG with Sky Blue Glow -->
+          <a href="https://www.linkedin.com/in/raj-badgujar-314920383/" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-sky-400/60 hover:bg-sky-500/10 text-sky-400 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(14,165,233,0.35)] transition-all flex items-center justify-center" title="LinkedIn Profile">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Abstract Solar System & Planetary Alignment System Visual (5 Cols) -->
+      <div class="lg:col-span-5 flex justify-center relative">
+        <div class="quantum-card tilt-card relative w-full max-w-sm p-6 overflow-hidden" data-tilt>
+          <div class="card-flare"></div>
+          
+          <!-- Astrometry Telemetry Header -->
+          <div class="flex items-center justify-between border-b border-void-border pb-3 text-[11px] font-mono text-telemetry-slate">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span class="text-telemetry-bright font-semibold">SOLAR SYSTEM ORBITS</span>
+            </div>
+            <span class="text-amber-300 font-mono font-bold">1.000 AU HELIO</span>
+          </div>
+
+          <!-- PURE MATHEMATICAL PLANETARY ORBITS WITH LABELED PLANETS SVG -->
+          <div class="relative py-4 flex items-center justify-center">
+            <svg class="w-full h-auto max-w-[310px]" viewBox="0 0 360 360" fill="none">
+              <!-- Outer Compass Degree Marks -->
+              <circle cx="180" cy="180" r="172" stroke="#64748B" stroke-width="0.75" stroke-dasharray="3 9" opacity="0.35"/>
+              <circle cx="180" cy="180" r="176" stroke="#64748B" stroke-width="0.5" stroke-dasharray="1 17" opacity="0.25"/>
+              
+              <!-- Crosshair Axis Coordinates -->
+              <line x1="180" y1="6" x2="180" y2="354" stroke="#64748B" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.2"/>
+              <line x1="6" y1="180" x2="354" y2="180" stroke="#64748B" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.2"/>
+
+              <!-- Concentric Planetary Orbit Tracks with Colors -->
+              <!-- 1. Mercury Orbit (0.39 AU) -->
+              <ellipse cx="182" cy="180" rx="36" ry="34" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+              
+              <!-- 2. Venus Orbit (0.72 AU) -->
+              <ellipse cx="181" cy="180" rx="66" ry="63" stroke="#f59e0b" stroke-width="0.85" stroke-dasharray="4 3" opacity="0.45"/>
+              
+              <!-- 3. Earth Orbit (1.000 AU) - Radiant Celestial Cyan -->
+              <ellipse cx="178" cy="180" rx="98" ry="94" stroke="#06b6d4" stroke-width="1.5" opacity="0.85" filter="drop-shadow(0 0 8px rgba(6,182,212,0.45))"/>
+              
+              <!-- 4. Mars Orbit (1.52 AU) - Ruby Coral -->
+              <ellipse cx="184" cy="180" rx="130" ry="124" stroke="#f43f5e" stroke-width="0.85" stroke-dasharray="5 3" opacity="0.45"/>
+              
+              <!-- 5. Jupiter Orbit (5.20 AU) - Terracotta Amber -->
+              <ellipse cx="180" cy="180" rx="156" ry="150" stroke="#fb923c" stroke-width="0.7" stroke-dasharray="6 4" opacity="0.35"/>
+
+              <!-- 6. Saturn Orbit (9.58 AU) - Pale Gold Outer Track -->
+              <ellipse cx="180" cy="180" rx="172" ry="166" stroke="#e2e8f0" stroke-width="0.55" stroke-dasharray="8 5" opacity="0.3"/>
+
+              <!-- Central Sol (Sun) - Vibrant Golden Amber Corona -->
+              <circle cx="180" cy="180" r="16" fill="#f59e0b" opacity="0.25" filter="blur(4px)"/>
+              <circle cx="180" cy="180" r="9" fill="#fbbf24" opacity="0.85"/>
+              <circle cx="180" cy="180" r="5.5" fill="#fef08a"/>
+              <text x="180" y="202" font-family="'JetBrains Mono', monospace" font-size="8" fill="#fbbf24" text-anchor="middle" font-weight="bold">SOL (SUN) ☉</text>
+
+              <!-- Mercury Node & Name -->
+              <circle cx="154" cy="158" r="2.8" fill="#cbd5e1" filter="drop-shadow(0 0 3px #cbd5e1)"/>
+              <text x="146" y="152" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#cbd5e1" font-weight="bold">MERCURY [☿] 0.39 AU</text>
+
+              <!-- Venus Node & Name -->
+              <circle cx="244" cy="162" r="3.6" fill="#fde047" filter="drop-shadow(0 0 5px #f59e0b)"/>
+              <text x="248" y="156" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#fde047" font-weight="bold">VENUS [♀] 0.72 AU</text>
+
+              <!-- Earth & Luna System & Name -->
+              <circle cx="96" cy="232" r="5.5" fill="#06b6d4" filter="drop-shadow(0 0 10px #06b6d4)"/>
+              <circle cx="96" cy="232" r="3" fill="#e0f2fe"/>
+              <circle cx="86" cy="226" r="1.6" fill="#f8fafc"/>
+              <line x1="96" y1="232" x2="86" y2="226" stroke="#06b6d4" stroke-width="0.8" opacity="0.8"/>
+              <text x="44" y="254" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#38bdf8" font-weight="bold">EARTH [♁] 1.00 AU (TERRA)</text>
+              <text x="56" y="265" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#94a3b8">+ MOON (LUNA)</text>
+
+              <!-- Mars Node & Name -->
+              <circle cx="298" cy="222" r="4" fill="#f43f5e" filter="drop-shadow(0 0 7px #f43f5e)"/>
+              <text x="238" y="240" font-family="'JetBrains Mono', monospace" font-size="8" fill="#fb7185" font-weight="bold">MARS [♂] 1.52 AU</text>
+
+              <!-- Jupiter Node & Name -->
+              <circle cx="122" cy="54" r="5.2" fill="#fb923c" filter="drop-shadow(0 0 7px #fb923c)"/>
+              <circle cx="122" cy="54" r="2.8" fill="#ffedd5"/>
+              <text x="68" y="46" font-family="'JetBrains Mono', monospace" font-size="8" fill="#fb923c" font-weight="bold">JUPITER [♃] 5.20 AU</text>
+
+              <!-- Saturn Node & Ring & Name -->
+              <ellipse cx="268" cy="324" rx="8" ry="2.6" stroke="#fde047" stroke-width="0.85" fill="none" transform="rotate(-25 268 324)" opacity="0.8"/>
+              <circle cx="268" cy="324" r="4.2" fill="#fef08a" filter="drop-shadow(0 0 5px #fde047)"/>
+              <text x="210" y="344" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#e2e8f0" font-weight="bold">SATURN [♄] 9.58 AU</text>
+
+              <!-- True Anomaly Alignment Vector & Angle Marker -->
+              <line x1="180" y1="180" x2="96" y2="232" stroke="#06b6d4" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.75"/>
+              <path d="M 180 160 A 20 20 0 0 1 194 168" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+              <text x="202" y="164" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#f59e0b" font-weight="bold">∠ 23.4° TILT</text>
+            </svg>
+          </div>
+
+          <!-- Bottom Telemetry Bar -->
+          <div class="border-t border-void-border pt-3 flex items-center justify-between text-[10px] font-mono">
+            <span class="text-cyan-400 font-semibold">VELOCITY: 29.78 KM/S</span>
+            <span class="text-amber-300 font-semibold">7 CELESTIAL BODIES MAPPED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="coordinate-divider"></div>
+
+    <!-- SECTION 1: ABOUT ME & PHILOSOPHY -->
+    <section id="about" class="space-y-6 gravity-well">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-dust-gold font-bold">01 //</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-telemetry-bright tracking-tight">About Me</h2>
+        <div class="h-[1px] flex-1 bg-void-border"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Astrometric Personnel Dossier Card with Photo (4 Cols) -->
+        <div class="lg:col-span-4 quantum-card tilt-card p-5 space-y-3 relative group overflow-hidden" data-tilt>
+          <div class="card-flare"></div>
+          
+          <!-- Scanline beam on hover -->
+          <div class="absolute inset-x-0 h-[2px] bg-cyan-400 shadow-[0_0_12px_#06b6d4] opacity-0 group-hover:opacity-100 transition-opacity animate-scan"></div>
+          
+          <div class="w-full h-64 rounded-xl overflow-hidden border border-white/10 relative bg-void-obsidian shadow-inner">
+            <img src="./raj-badgujar.jpg" alt="Raj Badgujar" class="w-full h-full object-cover object-[center_18%] group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-void-black/90 via-void-black/20 to-transparent"></div>
+            
+            <div class="absolute top-2.5 left-2.5">
+              <span class="px-2 py-0.5 rounded-full bg-void-black/80 border border-emerald-500/50 text-[10px] font-mono text-emerald-300 font-bold flex items-center gap-1.5 shadow-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                ACTIVE DOSSIER
+              </span>
+            </div>
+
+            <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono">
+              <span class="text-white font-bold bg-void-black/85 px-2.5 py-1 rounded border border-white/10">RAJ BADGUJAR</span>
+              <span class="text-amber-300 font-bold bg-amber-500/20 px-2.5 py-1 rounded border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.3)]">CGPA 8.73</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs font-mono pt-1">
+            <div class="flex items-center justify-between border-b border-void-border pb-2">
+              <span class="text-telemetry-dim">Discipline</span>
+              <span class="text-telemetry-bright font-semibold">B.Tech IT</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-void-border pb-2">
+              <span class="text-telemetry-dim">Status</span>
+              <span class="text-emerald-400 font-medium">Available for Roles</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-telemetry-dim">Direct Voice</span>
+              <a href="tel:+919764494400" class="text-cyan-300 hover:text-cyan-200 transition-colors font-semibold flex items-center gap-1">
+                <i data-lucide="phone" class="w-3 h-3 text-cyan-400"></i>
+                +91 9764494400
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Biography & Telemetry Stats (8 Cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="space-y-4 text-telemetry-slate leading-relaxed text-sm sm:text-base font-sans">
+            <p>
+              I am an Information Technology undergraduate committed to clean, defensive software engineering and scalable systems. With a strong cumulative grade point average of <strong class="text-amber-300 font-mono font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">8.73 / 10.00 CGPA</strong>, my engineering core is anchored in low-level systems programming with <a href="https://www.geeksforgeeks.org/c-programming-language/" target="_blank" rel="noopener noreferrer" data-gfg="C Language" title="Explore C on GeeksforGeeks ↗" class="text-cyan-300 font-mono text-xs px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/20 shadow-[0_0_8px_rgba(6,182,212,0.15)] font-semibold inline-flex items-center gap-1 cursor-pointer">C ↗</a>, structured object-oriented service architectures in <a href="https://www.geeksforgeeks.org/java/" target="_blank" rel="noopener noreferrer" data-gfg="Java" title="Explore Java on GeeksforGeeks ↗" class="text-rose-300 font-mono text-xs px-2 py-0.5 rounded bg-rose-500/10 border border-rose-500/30 hover:border-rose-400 hover:bg-rose-500/20 shadow-[0_0_8px_rgba(244,63,94,0.15)] font-semibold inline-flex items-center gap-1 cursor-pointer">Java ↗</a>, and relational schema optimization in <a href="https://www.geeksforgeeks.org/sql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="SQL" title="Explore SQL on GeeksforGeeks ↗" class="text-amber-300 font-mono text-xs px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 shadow-[0_0_8px_rgba(245,158,11,0.15)] font-semibold inline-flex items-center gap-1 cursor-pointer">SQL ↗</a>.
+            </p>
+            <p>
+              Whether engineering an end-to-end alumni networking platform, conceptualizing sustainable pneumatic urban transit mechanisms, or implementing dynamic business intelligence reporting pipelines, I prioritize algorithmic efficiency, clean abstractions, and minimal latency.
+            </p>
+            <p>
+              Alongside core development, I actively lead campus technical initiatives, directing visual identity systems and interface assets for community workshops, hackathons, and national innovation competitions.
+            </p>
+          </div>
+
+          <!-- Astrometric Metric Stats Box -->
+          <div class="quantum-card p-5 space-y-4">
+            <div class="card-flare"></div>
+            <h3 class="text-xs font-mono font-medium text-cyan-400 uppercase tracking-wider flex items-center justify-between">
+              <span class="flex items-center gap-2">
+                <i data-lucide="radar" class="w-3.5 h-3.5 text-cyan-400 animate-spin" style="animation-duration: 10s;"></i>
+                Telemetry & Academic Metrics
+              </span>
+              <span class="text-dust-gold">[TELEMETRY_REF_01]</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">B.Tech IT (Current)</span>
+                <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/25">8.73 / 10.00 CGPA</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">MHT-CET Entrance</span>
+                <span class="text-cyan-300 font-bold bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/25">90.00 Percentile</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">10th SSC Board</span>
+                <span class="text-emerald-300 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">89.00% (Distinction)</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">12th HSC Board</span>
+                <span class="text-sky-300 font-bold bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/25">78.17% (First Class)</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2 sm:col-span-2">
+                <span class="text-telemetry-dim">Core Fundamentals</span>
+                <span class="text-fuchsia-300 font-medium">DSA · DBMS · OS · OOP</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">Coordinates</span>
+                <span class="text-slate-200">Maharashtra, India</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-void-border pb-2">
+                <span class="text-telemetry-dim">Mobility</span>
+                <span class="text-emerald-400 font-medium flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  Remote & Relocation
+                </span>
+              </div>
+              <div class="flex items-center justify-between sm:col-span-2 pt-1">
+                <span class="text-telemetry-dim">Direct Voice Line</span>
+                <a href="tel:+919764494400" class="text-cyan-300 hover:text-cyan-200 transition-colors font-bold flex items-center gap-1.5">
+                  <i data-lucide="phone" class="w-3.5 h-3.5 text-cyan-400"></i>
+                  +91 9764494400
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="coordinate-divider"></div>
+
+    <!-- SECTION 2: CORE SKILLS -->
+    <section id="skills" class="space-y-6 gravity-well">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-xs text-dust-gold font-bold">02 //</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-telemetry-bright tracking-tight">Technical Arsenal</h2>
+        </div>
+        <div class="h-[1px] flex-1 bg-void-border min-w-[20px]"></div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[11px] font-mono text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+          <i data-lucide="external-link" class="w-3 h-3 text-emerald-400"></i>
+          <span>Click any language to read GeeksforGeeks docs ↗</span>
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- Programming Languages -->
+        <div class="quantum-card p-6 space-y-4">
+          <div class="card-flare"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-telemetry-bright">Programming Languages</h3>
+            <span class="text-xs font-mono text-dust-gold font-bold">[CORE_01]</span>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+            <a href="https://www.geeksforgeeks.org/c-programming-language/" target="_blank" rel="noopener noreferrer" data-gfg="C Language" title="Read C Documentation on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>C</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/java/" target="_blank" rel="noopener noreferrer" data-gfg="Java" title="Read Java Documentation on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:border-rose-400 hover:bg-rose-500/20 transition-all shadow-[0_0_10px_rgba(244,63,94,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Java</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/sql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="SQL" title="Read SQL Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_10px_rgba(245,158,11,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>SQL</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/mysql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="MySQL" title="Read MySQL Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_10px_rgba(245,158,11,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>MySQL</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/sql-server/" target="_blank" rel="noopener noreferrer" data-gfg="SQL Server" title="Read SQL Server Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:border-rose-400 hover:bg-rose-500/20 transition-all shadow-[0_0_10px_rgba(244,63,94,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>SQL Server</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/javascript/" target="_blank" rel="noopener noreferrer" data-gfg="JavaScript" title="Read JavaScript Documentation on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 hover:border-yellow-400 hover:bg-yellow-500/20 transition-all shadow-[0_0_10px_rgba(234,179,8,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>JavaScript</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/html-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="HTML5" title="Read HTML5 Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-orange-500/10 border border-orange-500/30 text-orange-300 hover:border-orange-400 hover:bg-orange-500/20 transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>HTML5</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/css-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="CSS3" title="Read CSS3 Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 hover:border-sky-400 hover:bg-sky-500/20 transition-all shadow-[0_0_10px_rgba(14,165,233,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>CSS3</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Frameworks & UI -->
+        <div class="quantum-card p-6 space-y-4">
+          <div class="card-flare"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-telemetry-bright">Frameworks & Libraries</h3>
+            <span class="text-xs font-mono text-cyan-400 font-bold">[UI_02]</span>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+            <a href="https://www.geeksforgeeks.org/tailwind-css/" target="_blank" rel="noopener noreferrer" data-gfg="Tailwind CSS" title="Read Tailwind CSS Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-teal-500/10 border border-teal-500/30 text-teal-300 font-medium hover:border-teal-400 hover:bg-teal-500/20 transition-all shadow-[0_0_10px_rgba(20,184,166,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Tailwind CSS</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/react/" target="_blank" rel="noopener noreferrer" data-gfg="React" title="Read React Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 hover:border-cyan-300 hover:bg-cyan-500/20 transition-all shadow-[0_0_10px_rgba(6,182,212,0.15)] inline-flex items-center gap-1 cursor-pointer">
+              <span>React</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/nodejs/" target="_blank" rel="noopener noreferrer" data-gfg="Node.js" title="Read Node.js Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all shadow-[0_0_10px_rgba(16,185,129,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Node.js</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/express-js/" target="_blank" rel="noopener noreferrer" data-gfg="Express.js" title="Read Express.js Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-violet-500/10 border border-violet-500/30 text-violet-300 hover:border-violet-400 hover:bg-violet-500/20 transition-all shadow-[0_0_10px_rgba(139,92,246,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Express</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Databases & Developer Tools -->
+        <div class="quantum-card p-6 space-y-4">
+          <div class="card-flare"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-telemetry-bright">Databases & Environment</h3>
+            <span class="text-xs font-mono text-amber-400 font-bold">[ENV_03]</span>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+            <a href="https://www.geeksforgeeks.org/mysql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="MySQL" title="Read MySQL Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_10px_rgba(245,158,11,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>MySQL</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/sql-server/" target="_blank" rel="noopener noreferrer" data-gfg="SQL Server" title="Read SQL Server Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:border-rose-400 hover:bg-rose-500/20 transition-all shadow-[0_0_10px_rgba(244,63,94,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>SQL Server</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/google-looker-studio/" target="_blank" rel="noopener noreferrer" data-gfg="Looker Studio" title="Read Looker Studio Overview on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:border-blue-400 hover:bg-blue-500/20 transition-all shadow-[0_0_10px_rgba(59,130,246,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Google Looker Studio</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/git-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="Git" title="Read Git Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-orange-500/10 border border-orange-500/30 text-orange-300 hover:border-orange-400 hover:bg-orange-500/20 transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Git</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/github-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="GitHub" title="Read GitHub Tutorial on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:border-purple-400 hover:bg-purple-500/20 transition-all shadow-[0_0_10px_rgba(168,85,247,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>GitHub</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/linux-commands/" target="_blank" rel="noopener noreferrer" data-gfg="Linux OS" title="Read Linux Documentation on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all shadow-[0_0_10px_rgba(16,185,129,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Linux & macOS</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/visual-studio-code/" target="_blank" rel="noopener noreferrer" data-gfg="VS Code" title="Read VS Code Guide on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 hover:border-sky-400 hover:bg-sky-500/20 transition-all shadow-[0_0_10px_rgba(14,165,233,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>VS Code</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Core Specialties & Foundations -->
+        <div class="quantum-card p-6 space-y-4">
+          <div class="card-flare"></div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-telemetry-bright">Specialties & Concepts</h3>
+            <span class="text-xs font-mono text-fuchsia-400 font-bold">[THEORY_04]</span>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+            <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener noreferrer" data-gfg="DSA" title="Read DSA Guide on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-300 hover:border-fuchsia-400 hover:bg-fuchsia-500/20 transition-all shadow-[0_0_10px_rgba(217,70,239,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Data Structures & Algorithms</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" target="_blank" rel="noopener noreferrer" data-gfg="OOP" title="Read OOP Concepts on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Object-Oriented Programming (OOP)</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" rel="noopener noreferrer" data-gfg="Relational DBMS" title="Read Relational DBMS on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_10px_rgba(245,158,11,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Relational Database Architecture</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/memory-layout-of-c-program/" target="_blank" rel="noopener noreferrer" data-gfg="Memory Systems" title="Read Systems & Memory on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 hover:border-indigo-400 hover:bg-indigo-500/20 transition-all shadow-[0_0_10px_rgba(99,102,241,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Systems & Memory Fundamentals</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.geeksforgeeks.org/css-responsive-web-design/" target="_blank" rel="noopener noreferrer" data-gfg="Responsive UI/UX" title="Read Responsive Design on GeeksforGeeks ↗" class="group/tech px-2.5 py-1 rounded bg-pink-500/10 border border-pink-500/30 text-pink-300 hover:border-pink-400 hover:bg-pink-500/20 transition-all shadow-[0_0_10px_rgba(236,72,153,0.1)] inline-flex items-center gap-1 cursor-pointer">
+              <span>Responsive UI/UX</span>
+              <svg class="w-2.5 h-2.5 opacity-60 group-hover/tech:opacity-100 group-hover/tech:translate-x-0.5 group-hover/tech:-translate-y-0.5 transition-all text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CORE FUNDAMENTALS (DATA STRUCTURES, DBMS, OS, OOP) -->
+        <div class="quantum-card p-6 space-y-4 md:col-span-2">
+          <div class="card-flare"></div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-void-border pb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+              <h3 class="text-sm font-mono font-bold text-telemetry-bright tracking-wider">
+                CORE FUNDAMENTALS // COMPUTER SCIENCE PILLARS
+              </h3>
+            </div>
+            <span class="text-xs font-mono text-cyan-300 font-bold bg-cyan-500/10 px-2.5 py-0.5 rounded border border-cyan-500/30">[THEORY_SYSTEM_TREE]</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            <!-- Left: ASCII Folder-Tree Display -->
+            <div class="lg:col-span-5 p-4 rounded-xl bg-void-black/80 border border-white/10 font-mono text-xs leading-relaxed overflow-x-auto shadow-inner text-telemetry-bright flex flex-col justify-center">
+              <div class="text-cyan-400 font-bold mb-2 flex items-center gap-2 text-xs">
+                <i data-lucide="folder-tree" class="w-4 h-4 text-cyan-400"></i>
+                <span class="tracking-wide">CORE FUNDAMENTALS</span>
+              </div>
+              <div class="font-mono text-xs leading-loose text-slate-300">
+                <div><span class="text-cyan-500/80">├──</span> <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener noreferrer" data-gfg="DSA" class="text-fuchsia-300 font-bold hover:underline hover:text-fuchsia-200">Data Structures &amp; Algorithms</a> <span class="text-[10px] text-telemetry-dim">↗</span></div>
+                <div><span class="text-cyan-500/80">├──</span> <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" rel="noopener noreferrer" data-gfg="DBMS" class="text-amber-300 font-bold hover:underline hover:text-amber-200">Database Management Systems (DBMS)</a> <span class="text-[10px] text-telemetry-dim">↗</span></div>
+                <div><span class="text-cyan-500/80">├──</span> <a href="https://www.geeksforgeeks.org/operating-systems/" target="_blank" rel="noopener noreferrer" data-gfg="Operating Systems" class="text-emerald-300 font-bold hover:underline hover:text-emerald-200">Operating Systems (OS)</a> <span class="text-[10px] text-telemetry-dim">↗</span></div>
+                <div><span class="text-cyan-500/80">└──</span> <a href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" target="_blank" rel="noopener noreferrer" data-gfg="OOP" class="text-sky-300 font-bold hover:underline hover:text-sky-200">Object-Oriented Programming (OOP)</a> <span class="text-[10px] text-telemetry-dim">↗</span></div>
+              </div>
+            </div>
+
+            <!-- Right: 4 Fundamental Blocks with details -->
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-sans">
+              <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener noreferrer" data-gfg="DSA" class="p-3.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1 hover:border-fuchsia-500/40 hover:bg-fuchsia-500/5 transition-all block group/dsa">
+                <div class="font-mono font-bold text-fuchsia-300 text-[11px] flex items-center justify-between">
+                  <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400"></span>Data Structures & Algorithms</span>
+                  <span class="text-[10px] text-fuchsia-400 opacity-60 group-hover/dsa:opacity-100">GFG ↗</span>
+                </div>
+                <p class="text-[11px] text-telemetry-dim leading-relaxed">Asymptotic time/space complexity O(N), balanced trees, hash tables, graph traversals, and dynamic programming optimization.</p>
+              </a>
+
+              <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" rel="noopener noreferrer" data-gfg="DBMS" class="p-3.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all block group/dbms">
+                <div class="font-mono font-bold text-amber-300 text-[11px] flex items-center justify-between">
+                  <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>DBMS & Relational SQL</span>
+                  <span class="text-[10px] text-amber-400 opacity-60 group-hover/dbms:opacity-100">GFG ↗</span>
+                </div>
+                <p class="text-[11px] text-telemetry-dim leading-relaxed">ACID guarantees, B-Tree index optimization, 1NF to BCNF normalization, transactions, and relational schema integrity.</p>
+              </a>
+
+              <a href="https://www.geeksforgeeks.org/operating-systems/" target="_blank" rel="noopener noreferrer" data-gfg="Operating Systems" class="p-3.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all block group/os">
+                <div class="font-mono font-bold text-emerald-300 text-[11px] flex items-center justify-between">
+                  <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Operating Systems (OS)</span>
+                  <span class="text-[10px] text-emerald-400 opacity-60 group-hover/os:opacity-100">GFG ↗</span>
+                </div>
+                <p class="text-[11px] text-telemetry-dim leading-relaxed">CPU scheduling, threads & concurrency, virtual memory paging, inter-process communication (IPC), and POSIX system calls.</p>
+              </a>
+
+              <a href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" target="_blank" rel="noopener noreferrer" data-gfg="OOP" class="p-3.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all block group/oop">
+                <div class="font-mono font-bold text-sky-300 text-[11px] flex items-center justify-between">
+                  <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>Object-Oriented Programming (OOP)</span>
+                  <span class="text-[10px] text-sky-400 opacity-60 group-hover/oop:opacity-100">GFG ↗</span>
+                </div>
+                <p class="text-[11px] text-telemetry-dim leading-relaxed">Robust class abstractions, inheritance hierarchies, runtime polymorphism, encapsulation, and scalable design patterns.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="coordinate-divider"></div>
+
+    <!-- SECTION 3: FEATURED PROJECTS (LASER-PATH SWEEP + TICKER COUNTERS) -->
+    <section id="projects" class="space-y-6 gravity-well">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3 flex-1">
+          <span class="font-mono text-xs text-dust-gold font-bold">03 //</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-telemetry-bright tracking-tight">Featured Projects</h2>
+          <div class="h-[1px] flex-1 bg-void-border"></div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- PROJECT 1: Alumni Connect Portal -->
+        <article class="quantum-card tilt-card p-6 sm:p-8 space-y-4" data-tilt>
+          <div class="card-flare"></div>
+          <!-- Event Horizon Perimeter Laser Sweep SVG -->
+          <svg class="laser-border-svg" preserveAspectRatio="none">
+            <rect x="0.5" y="0.5" width="99.5%" height="99.5%" rx="16" class="laser-path-line" />
+          </svg>
+
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 relative z-10">
+            <div class="space-y-3 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="telemetry-ticker font-mono text-sm text-dust-gold font-bold" data-target="01">--</span>
+                <span class="text-white/20 font-mono text-xs">/</span>
+                <span class="text-xs font-mono text-telemetry-dim uppercase tracking-wider font-semibold">Full-Stack & Systems</span>
+                <span class="text-xs font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-void-border text-telemetry-dim">2026 Production</span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-telemetry-bright">
+                Alumni Connect Portal
+              </h3>
+
+              <p class="text-telemetry-slate text-sm leading-relaxed max-w-2xl font-sans">
+                A centralized networking and mentorship platform bridging students and alumni for career guidance, referrals, and collaboration.
+              </p>
+
+              <!-- Technical Highlight Box -->
+              <div class="p-3.5 rounded-lg bg-white/[0.015] border border-void-border text-xs text-telemetry-slate flex items-start gap-2.5">
+                <i data-lucide="database" class="w-4 h-4 text-dust-gold shrink-0 mt-0.5"></i>
+                <span><strong class="text-telemetry-bright">Architectural Highlight:</strong> Designed an optimized relational database schema and role-based access model to streamline student-alumni communication.</span>
+              </div>
+
+              <!-- Tech Chips -->
+              <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+                <a href="https://www.geeksforgeeks.org/java/" target="_blank" rel="noopener noreferrer" data-gfg="Java" title="Explore Java on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:border-rose-400 hover:bg-rose-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>Java</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/mysql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="MySQL" title="Explore MySQL on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>MySQL</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/tailwind-css/" target="_blank" rel="noopener noreferrer" data-gfg="Tailwind CSS" title="Explore Tailwind CSS on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:border-teal-400 hover:bg-teal-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>Tailwind CSS</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/javascript/" target="_blank" rel="noopener noreferrer" data-gfg="JavaScript" title="Explore JavaScript on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 hover:border-yellow-400 hover:bg-yellow-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>JavaScript</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/html-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="HTML5" title="Explore HTML5 on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-orange-500/10 border border-orange-500/30 text-orange-300 hover:border-orange-400 hover:bg-orange-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>HTML5</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Architectural Status Tag (Repository Link Removed) -->
+            <div class="shrink-0 pt-2 md:pt-0">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>SYSTEM ARCHITECTURE DEPLOYED</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: The Kinetic-Pneumatic Corridor -->
+        <article class="quantum-card tilt-card p-6 sm:p-8 space-y-4" data-tilt>
+          <div class="card-flare"></div>
+          <svg class="laser-border-svg" preserveAspectRatio="none">
+            <rect x="0.5" y="0.5" width="99.5%" height="99.5%" rx="16" class="laser-path-line" />
+          </svg>
+
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 relative z-10">
+            <div class="space-y-3 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="telemetry-ticker font-mono text-sm text-dust-gold font-bold" data-target="02">--</span>
+                <span class="text-white/20 font-mono text-xs">/</span>
+                <span class="text-xs font-mono text-telemetry-dim uppercase tracking-wider font-semibold">Infrastructure Design</span>
+                <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">Fund My Crazy 2026 Winner</span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-telemetry-bright">
+                The Kinetic-Pneumatic Corridor
+              </h3>
+
+              <p class="text-telemetry-slate text-sm leading-relaxed max-w-2xl font-sans">
+                Conceptual micro-infrastructure and sustainable urban transit architecture designed for the "Fund My Crazy 2026" innovation challenge.
+              </p>
+
+              <!-- Technical Highlight Box -->
+              <div class="p-3.5 rounded-lg bg-white/[0.015] border border-void-border text-xs text-telemetry-slate flex items-start gap-2.5">
+                <i data-lucide="activity" class="w-4 h-4 text-dust-gold shrink-0 mt-0.5"></i>
+                <span><strong class="text-telemetry-bright">Competition Selection:</strong> Transit architecture featuring modular pneumatic pods and kinetic energy capture.</span>
+              </div>
+
+              <!-- Tech Chips -->
+              <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:border-purple-400 transition-colors">Conceptual Systems Design</span>
+                <span class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 transition-colors">Generative AI Workflow</span>
+                <span class="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:border-amber-400 transition-colors">Data Visualization</span>
+              </div>
+            </div>
+
+            <!-- Architectural Status Tag (Repository Link Removed) -->
+            <div class="shrink-0 pt-2 md:pt-0">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>INNOVATION CHALLENGE WINNER</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: Interactive Analytics & Media Dashboard -->
+        <article class="quantum-card tilt-card p-6 sm:p-8 space-y-4" data-tilt>
+          <div class="card-flare"></div>
+          <svg class="laser-border-svg" preserveAspectRatio="none">
+            <rect x="0.5" y="0.5" width="99.5%" height="99.5%" rx="16" class="laser-path-line" />
+          </svg>
+
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 relative z-10">
+            <div class="space-y-3 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="telemetry-ticker font-mono text-sm text-dust-gold font-bold" data-target="03">--</span>
+                <span class="text-white/20 font-mono text-xs">/</span>
+                <span class="text-xs font-mono text-telemetry-dim uppercase tracking-wider font-semibold">Business Intelligence</span>
+                <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/30 text-blue-300 font-semibold">Analytics</span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-telemetry-bright">
+                Interactive Analytics & Media Dashboard
+              </h3>
+
+              <p class="text-telemetry-slate text-sm leading-relaxed max-w-2xl font-sans">
+                Dynamic business intelligence dashboard providing real-time KPI tracking, relational dataset visual reporting, and multi-variable filtering.
+              </p>
+
+              <!-- Technical Highlight Box -->
+              <div class="p-3.5 rounded-lg bg-white/[0.015] border border-void-border text-xs text-telemetry-slate flex items-start gap-2.5">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-dust-gold shrink-0 mt-0.5"></i>
+                <span><strong class="text-telemetry-bright">Data Engineering:</strong> Built automated custom dimensions and drill-down metrics to streamline complex dataset analysis.</span>
+              </div>
+
+              <!-- Tech Chips -->
+              <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+                <a href="https://www.geeksforgeeks.org/google-looker-studio/" target="_blank" rel="noopener noreferrer" data-gfg="Looker Studio" title="Explore Looker Studio on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:border-blue-400 hover:bg-blue-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>Google Looker Studio</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/google-sheets/" target="_blank" rel="noopener noreferrer" data-gfg="Google Sheets" title="Explore Google Sheets on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>Google Sheets</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://www.geeksforgeeks.org/sql-tutorial/" target="_blank" rel="noopener noreferrer" data-gfg="SQL" title="Explore SQL on GeeksforGeeks ↗" class="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium hover:border-amber-400 hover:bg-amber-500/20 transition-all inline-flex items-center gap-1 cursor-pointer">
+                  <span>SQL</span>
+                  <svg class="w-2.5 h-2.5 opacity-60 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Architectural Status Tag (Repository Link Removed) -->
+            <div class="shrink-0 pt-2 md:pt-0">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono shadow-[0_0_12px_rgba(59,130,246,0.15)]">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping"></span>
+                <span>ACTIVE ANALYTICS PIPELINE</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="coordinate-divider"></div>
+
+    <!-- SECTION 4: EDUCATION & CERTIFICATIONS -->
+    <section id="credentials" class="space-y-6 gravity-well">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-dust-gold font-bold">04 //</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-telemetry-bright tracking-tight">Credentials & Education</h2>
+        <div class="h-[1px] flex-1 bg-void-border"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Academic Degree & Scorecard (7 Cols) -->
+        <div class="lg:col-span-7 quantum-card p-6 sm:p-7 space-y-5">
+          <div class="card-flare"></div>
+          
+          <div class="flex items-center justify-between border-b border-void-border pb-3">
+            <div class="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400"></i>
+              <span class="font-semibold text-cyan-300">Academic Trajectory & Milestone Scores</span>
+            </div>
+            <span class="text-xs font-mono text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/25">CLASS OF 2026</span>
+          </div>
+
+          <!-- B.Tech Degree Highlight -->
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-void-border space-y-2">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="text-base font-bold text-telemetry-bright">
+                  Bachelor of Technology (B.Tech)
+                </h3>
+                <div class="text-xs font-mono text-cyan-300">
+                  Information Technology · Undergraduate (In Progress)
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/15 border border-amber-500/40 text-xs font-mono text-amber-300 font-bold shadow-[0_0_15px_rgba(245,158,11,0.25)] shrink-0">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+                CGPA: 8.73 / 10.00
+              </span>
+            </div>
+            <p class="text-xs text-telemetry-slate font-sans leading-relaxed pt-1">
+              Maintained disciplined academic excellence across lower and upper division systems curricula.
+            </p>
+          </div>
+
+          <!-- 3-Col / 3-Box Milestone Grid (10th SSC, 12th HSC, MHT-CET) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+            <!-- MHT-CET -->
+            <div class="p-3.5 rounded-xl bg-cyan-500/5 border border-cyan-500/25 space-y-1.5 hover:border-cyan-400/50 transition-colors">
+              <div class="text-[10px] text-cyan-400 uppercase tracking-wider font-semibold">Competitive Entrance</div>
+              <div class="text-base font-bold text-cyan-300">90.00 %ile</div>
+              <div class="text-[10.5px] text-telemetry-dim font-sans">MHT-CET (Engineering)</div>
+            </div>
+
+            <!-- 10th SSC -->
+            <div class="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/25 space-y-1.5 hover:border-emerald-400/50 transition-colors">
+              <div class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">Secondary School (SSC)</div>
+              <div class="text-base font-bold text-emerald-300">89.00%</div>
+              <div class="text-[10.5px] text-telemetry-dim font-sans">10th Board · Distinction</div>
+            </div>
+
+            <!-- 12th HSC -->
+            <div class="p-3.5 rounded-xl bg-sky-500/5 border border-sky-500/25 space-y-1.5 hover:border-sky-400/50 transition-colors">
+              <div class="text-[10px] text-sky-400 uppercase tracking-wider font-semibold">Higher Secondary (HSC)</div>
+              <div class="text-base font-bold text-sky-300">78.17%</div>
+              <div class="text-[10.5px] text-telemetry-dim font-sans">12th Board · First Class</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Core Fundamentals & Certifications (5 Cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          
+          <!-- Core Fundamentals Subject Card -->
+          <div class="quantum-card p-5 space-y-3">
+            <div class="card-flare"></div>
+            <div class="flex items-center justify-between border-b border-void-border pb-2.5">
+              <div class="flex items-center gap-2 text-xs font-mono text-fuchsia-400 uppercase tracking-wider">
+                <i data-lucide="book-open" class="w-4 h-4 text-fuchsia-400"></i>
+                <span class="font-semibold text-fuchsia-300">Curriculum Subjects</span>
+              </div>
+              <span class="text-[11px] font-mono text-telemetry-dim">CORE FOUR</span>
+            </div>
+
+            <div class="font-mono text-xs space-y-2 bg-void-black/60 p-3 rounded-lg border border-white/5">
+              <div class="text-cyan-400 font-bold text-[11px] flex items-center justify-between">
+                <span>CORE FUNDAMENTALS</span>
+                <span class="text-[9.5px] text-emerald-400 font-normal">GEEKSFORGEEKS ↗</span>
+              </div>
+              <div class="space-y-1 text-slate-300 text-[11.5px]">
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-500/80">├──</span>
+                  <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" rel="noopener noreferrer" data-gfg="DSA" class="text-fuchsia-300 font-semibold hover:underline hover:text-fuchsia-200">Data Structures &amp; Algorithms</a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-500/80">├──</span>
+                  <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" rel="noopener noreferrer" data-gfg="DBMS" class="text-amber-300 font-semibold hover:underline hover:text-amber-200">Database Management Systems (DBMS)</a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-500/80">├──</span>
+                  <a href="https://www.geeksforgeeks.org/operating-systems/" target="_blank" rel="noopener noreferrer" data-gfg="Operating Systems" class="text-emerald-300 font-semibold hover:underline hover:text-emerald-200">Operating Systems (OS)</a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-500/80">└──</span>
+                  <a href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" target="_blank" rel="noopener noreferrer" data-gfg="OOP" class="text-sky-300 font-semibold hover:underline hover:text-sky-200">Object-Oriented Programming (OOP)</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verified Certifications Card -->
+          <div class="quantum-card p-5 space-y-3">
+            <div class="card-flare"></div>
+            <div class="flex items-center justify-between border-b border-void-border pb-2.5">
+              <div class="flex items-center gap-2 text-xs font-mono text-amber-400 uppercase tracking-wider">
+                <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+                <span class="font-semibold text-amber-300">Verified Certifications</span>
+              </div>
+              <span class="text-[11px] font-mono text-emerald-400">VALIDATED</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-telemetry-slate font-mono pt-0.5">
+              <li class="flex items-start gap-2.5 p-2 rounded-lg bg-white/[0.015] border border-white/5">
+                <span class="w-2 h-2 rounded-full bg-amber-400 mt-1 shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
+                <span><strong class="text-amber-300">CodeChef:</strong> Technical Programming &amp; Problem Solving Certification</span>
+              </li>
+              <li class="flex items-start gap-2.5 p-2 rounded-lg bg-white/[0.015] border border-white/5">
+                <span class="w-2 h-2 rounded-full bg-rose-400 mt-1 shrink-0 shadow-[0_0_8px_rgba(244,63,94,0.6)]"></span>
+                <span><strong class="text-rose-300">Tech Mahindra:</strong> Software Development Foundations Certification</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="coordinate-divider"></div>
+
+    <!-- SECTION 5: CONTACT ME & INQUIRY TRANSMISSION -->
+    <section id="contact" class="space-y-8 gravity-well">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-dust-gold font-bold">05 //</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-telemetry-bright tracking-tight">Contact Me</h2>
+        <div class="h-[1px] flex-1 bg-void-border"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Direct Coordinates & Phone Card (5 Cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="quantum-card p-6 space-y-5">
+            <div class="card-flare"></div>
+            <div class="space-y-1.5 relative z-10">
+              <h3 class="text-lg font-bold text-telemetry-bright tracking-tight">
+                Direct Telemetry & Voice Channels
+              </h3>
+              <p class="text-telemetry-slate text-xs leading-relaxed font-sans">
+                Open for software engineering internships, systems architecture collaborations, or direct inquiries.
+              </p>
+            </div>
+
+            <div class="space-y-3 relative z-10 text-xs font-mono">
+              <!-- Mobile Phone Box -->
+              <div class="p-3.5 rounded-xl bg-cyan-500/5 border border-cyan-500/25 space-y-2 hover:border-cyan-400/50 transition-colors">
+                <div class="flex items-center justify-between text-telemetry-dim text-[11px]">
+                  <span class="flex items-center gap-1.5 text-cyan-300 font-semibold">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    Mobile / WhatsApp
+                  </span>
+                  <span class="text-emerald-400 font-bold">LIVE CELL</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <a href="tel:+919764494400" class="text-sm font-bold text-white hover:text-cyan-300 transition-colors">
+                    +91 9764494400
+                  </a>
+                  <div class="flex items-center gap-2">
+                    <button onclick="copyPhone()" class="p-1.5 rounded bg-white/[0.04] hover:bg-white/[0.08] text-telemetry-dim hover:text-white transition-colors" title="Copy Number">
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <a href="https://wa.me/919764494400" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 text-[10px] font-bold transition-colors">
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email Box -->
+              <div class="p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/25 space-y-2 hover:border-amber-400/50 transition-colors">
+                <div class="flex items-center justify-between text-telemetry-dim text-[11px]">
+                  <span class="flex items-center gap-1.5 text-amber-300 font-semibold">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
+                    Official Email
+                  </span>
+                  <span class="text-dust-gold">ENCRYPTED</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <a href="mailto:rajbadgujar450@gmail.com" class="text-xs font-bold text-white hover:text-amber-300 transition-colors">
+                    rajbadgujar450@gmail.com
+                  </a>
+                  <button onclick="copyEmail()" class="p-1.5 rounded bg-white/[0.04] hover:bg-white/[0.08] text-telemetry-dim hover:text-white transition-colors" title="Copy Email">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Location & Academic -->
+              <div class="p-3.5 rounded-xl bg-white/[0.02] border border-void-border space-y-1.5">
+                <div class="flex items-center justify-between text-telemetry-dim text-[11px]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-dust-gold"></i>
+                    Current Base
+                  </span>
+                  <span class="text-telemetry-bright font-medium">Maharashtra, India</span>
+                </div>
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-telemetry-dim">Academic Performance</span>
+                  <span class="text-amber-300 font-bold">8.73 / 10.00 CGPA</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex items-center gap-2.5 pt-2 relative z-10">
+              <a href="https://www.linkedin.com/in/raj-badgujar-314920383/" target="_blank" rel="noopener noreferrer" class="magnetic-btn flex-1 py-2 px-3 rounded-lg bg-white/[0.03] hover:bg-sky-500/10 text-telemetry-bright hover:text-sky-300 border border-white/10 hover:border-sky-400/60 text-xs font-mono font-medium flex items-center justify-center gap-2 transition-all">
+                <svg class="w-3.5 h-3.5 fill-current text-sky-400" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/rajbadgujar1" target="_blank" rel="noopener noreferrer" class="magnetic-btn flex-1 py-2 px-3 rounded-lg bg-white/[0.03] hover:bg-cyan-500/10 text-telemetry-bright hover:text-cyan-300 border border-white/10 hover:border-cyan-400/60 text-xs font-mono font-medium flex items-center justify-center gap-2 transition-all">
+                <svg class="w-3.5 h-3.5 fill-current text-cyan-400" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Contact Form (Why Do You Want to Contact Us?) (7 Cols) -->
+        <div class="lg:col-span-7 quantum-card p-6 sm:p-8 space-y-6">
+          <div class="card-flare"></div>
+          
+          <div class="space-y-1 relative z-10">
+            <h3 class="text-xl font-bold text-telemetry-bright tracking-tight">
+              Initiate Signal Transmission
+            </h3>
+            <p class="text-telemetry-slate text-xs font-sans">
+              Please specify the objective of your communication to ensure a prompt, tailored response.
+            </p>
+          </div>
+
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 relative z-10 font-mono text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="contact-name" class="text-telemetry-dim uppercase tracking-wider text-[11px]">Your Name / Company *</label>
+                <input type="text" id="contact-name" required placeholder="e.g. Alex Morgan / TechCorp" class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.02] border border-void-border focus:border-cyan-400/80 focus:bg-white/[0.04] text-telemetry-bright outline-none transition-all">
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-email" class="text-telemetry-dim uppercase tracking-wider text-[11px]">Your Email Address *</label>
+                <input type="email" id="contact-email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.02] border border-void-border focus:border-cyan-400/80 focus:bg-white/[0.04] text-telemetry-bright outline-none transition-all">
+              </div>
+            </div>
+
+            <!-- "Why Do You Want to Contact Us?" Dropdown -->
+            <div class="space-y-1.5">
+              <label for="contact-reason" class="text-amber-300 font-semibold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                Why do you want to contact us? *
+              </label>
+              <select id="contact-reason" required class="w-full px-3.5 py-2.5 rounded-lg bg-void-obsidian border border-amber-500/30 focus:border-amber-400 focus:bg-void-obsidian text-telemetry-bright outline-none transition-all cursor-pointer">
+                <option value="Software Engineering Internship / Full-Time Role">💼 Software Engineering Internship / Full-Time Role</option>
+                <option value="Systems Programming & Database Architecture Project">⚡ Systems Programming & Database Architecture Collaboration</option>
+                <option value="Full-Stack Application Development Project">🛠️ Full-Stack Application Development Project</option>
+                <option value="Campus Tech Initiative / Hackathon Mentorship">🚀 Campus Tech Initiative / Hackathon Mentorship</option>
+                <option value="General Technical Inquiry / Direct Connection">🌐 General Technical Inquiry / Direct Network Connection</option>
+              </select>
+            </div>
+
+            <!-- Message Details -->
+            <div class="space-y-1.5">
+              <label for="contact-message" class="text-telemetry-dim uppercase tracking-wider text-[11px]">Transmission Details / Message *</label>
+              <textarea id="contact-message" rows="4" required placeholder="Outline the project scope, role requirements, or collaboration goals..." class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.02] border border-void-border focus:border-cyan-400/80 focus:bg-white/[0.04] text-telemetry-bright outline-none transition-all resize-none"></textarea>
+            </div>
+
+            <!-- Form Action -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span class="text-[10px] text-telemetry-dim font-sans order-2 sm:order-1">
+                Direct phone: <strong class="text-cyan-300 font-mono">+91 9764494400</strong>
+              </span>
+              <button type="submit" class="magnetic-btn w-full sm:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 via-sky-500 to-amber-400 hover:from-cyan-400 hover:to-amber-300 text-slate-950 font-bold font-mono text-xs shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all flex items-center justify-center gap-2 order-1 sm:order-2">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span>Transmit Signal</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- FLOATING CUSTOM CHATBOT: "RAJ AI // NEURAL ASTROMETRY TERMINAL"   -->
+  <!-- ================================================================= -->
+  <div id="astro-bot-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    
+    <!-- Chatbot Window Panel -->
+    <div id="chatbot-window" class="hidden mb-4 w-[340px] sm:w-[390px] h-[510px] max-h-[82vh] rounded-2xl bg-void-obsidian/95 border border-cyan-400/40 shadow-[0_0_35px_rgba(6,182,212,0.35)] backdrop-blur-2xl flex flex-col overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+      
+      <!-- Chatbot Header -->
+      <div class="px-4 py-3 border-b border-void-border bg-white/[0.03] flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="relative">
+            <img src="./raj-badgujar.jpg" alt="Raj AI" class="w-8 h-8 rounded-full object-cover object-[center_18%] border border-cyan-400/70 shadow-sm">
+            <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-void-black animate-pulse"></span>
+          </div>
+          <div>
+            <div class="text-xs font-mono font-bold text-telemetry-bright flex items-center gap-1.5">
+              <span>RAJ AI</span>
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">NEURAL CORE</span>
+            </div>
+            <div class="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+              Online · Ask anything about Raj
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <button onclick="toggleChatbot()" class="p-1.5 rounded-lg text-telemetry-dim hover:text-white hover:bg-white/[0.05] transition-colors" title="Close Terminal">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-3 font-sans text-xs text-telemetry-bright select-text">
+        <!-- Initial Bot Greeting -->
+        <div class="flex items-start gap-2.5">
+          <div class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-[10px] font-mono text-cyan-300 shrink-0 mt-0.5">
+            AI
+          </div>
+          <div class="p-3 rounded-2xl rounded-tl-sm bg-white/[0.04] border border-white/10 text-telemetry-slate leading-relaxed shadow-sm">
+            Greetings! I am <strong class="text-white">Raj's custom AI Assistant</strong>. Ask me anything about his engineering skills, Core Fundamentals (DSA, DBMS, OS, OOP), academic track (<strong class="text-amber-300 font-mono">CGPA 8.73 · CET 90 %ile · 89% SSC</strong>), featured projects, or phone number (<strong class="text-cyan-300 font-mono">+91 9764494400</strong>)!
+          </div>
+        </div>
+
+        <!-- Suggestion Chips -->
+        <div id="chatbot-suggestions" class="pt-1 flex flex-wrap gap-1.5 font-mono text-[10.5px]">
+          <button onclick="askChatbotQuestion('What are Raj\'s core fundamentals and subjects?')" class="px-2.5 py-1 rounded-full bg-fuchsia-500/10 hover:bg-fuchsia-500/20 border border-fuchsia-500/30 text-fuchsia-300 transition-colors text-left">
+            📚 Core Fundamentals (DSA, DBMS, OS, OOP)
+          </button>
+          <button onclick="askChatbotQuestion('What are Raj\'s 10th SSC, 12th HSC, CET, and CGPA marks?')" class="px-2.5 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-colors text-left">
+            🎯 Academic Scores (8.73 CGPA · 90%ile CET)
+          </button>
+          <button onclick="askChatbotQuestion('What are Raj\'s core skills and technologies?')" class="px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 transition-colors text-left">
+            ⚡ Skills &amp; Tech
+          </button>
+          <button onclick="askChatbotQuestion('Tell me about Raj\'s featured projects.')" class="px-2.5 py-1 rounded-full bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 transition-colors text-left">
+            🚀 Featured Projects
+          </button>
+          <button onclick="askChatbotQuestion('What is Raj\'s phone number and email?')" class="px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 transition-colors text-left">
+            📞 Phone &amp; Email (+91 9764494400)
+          </button>
+        </div>
+      </div>
+
+      <!-- Chatbot Input Form -->
+      <form id="chatbot-form" onsubmit="handleChatbotSend(event)" class="p-3 border-t border-void-border bg-white/[0.02] flex items-center gap-2">
+        <input type="text" id="chatbot-input" placeholder="Ask anything about Raj..." autocomplete="off" class="flex-1 px-3.5 py-2 rounded-xl bg-void-black border border-white/10 focus:border-cyan-400 focus:bg-white/[0.03] text-xs font-sans text-telemetry-bright outline-none transition-all placeholder:text-telemetry-dim">
+        <button type="submit" class="p-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition-all shadow-[0_0_12px_rgba(6,182,212,0.4)] flex items-center justify-center">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Floating Chatbot Toggle Launcher Button -->
+    <button id="chatbot-launcher" onclick="toggleChatbot()" class="magnetic-btn group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-600 via-sky-500 to-amber-400 text-slate-950 font-bold font-mono text-xs shadow-[0_0_25px_rgba(6,182,212,0.55)] hover:shadow-[0_0_35px_rgba(6,182,212,0.8)] hover:scale-105 active:scale-95 transition-all cursor-pointer">
+      <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+      <div class="relative w-5 h-5 flex items-center justify-center">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16.93V18c0-.55-.45-1-1-1s-1 .45-1 1v.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.79-5.14C19.92 13.21 20 12.62 20 12c0-4.08-3.05-7.44-7-7.93V5c0 .55-.45 1-1 1s-1-.45-1-1v-.93c-1.89.24-3.56 1.1-4.83 2.37l7.62 7.62c.35-.17.72-.27 1.21-.27h1.01l1.99 1.99z"/></svg>
+      </div>
+      <span class="tracking-wide">Ask Raj AI</span>
+      <!-- Pulsing Orbit Ping -->
+      <span class="absolute -inset-1 rounded-full border border-cyan-400/50 animate-ping pointer-events-none opacity-40"></span>
+    </button>
+
+  </div>
+
+  <!-- ASTRONOMY FOOTER -->
+  <footer class="border-t border-void-border mt-28 py-8 text-xs text-telemetry-dim font-mono relative z-10 backdrop-blur-xl bg-void-black/80">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-dust-gold"></span>
+        <span>The Quantum Celestial Fold · <strong class="text-telemetry-bright font-medium">Raj Badgujar</strong> · 2026</span>
+      </div>
+      <div class="flex items-center gap-4 text-telemetry-dim">
+        <a href="https://github.com/rajbadgujar1" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition-colors">GitHub</a>
+        <span>·</span>
+        <a href="https://www.linkedin.com/in/raj-badgujar-314920383/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-300 transition-colors">LinkedIn</a>
+        <span>·</span>
+        <a href="mailto:rajbadgujar450@gmail.com" class="hover:text-amber-300 transition-colors">Email</a>
+      </div>
+    </div>
+  </footer>
+  </div> <!-- End #main-portfolio-wrapper -->
+
+  <!-- SCRIPT ENGINE: ASTROMETRY CANVAS, WARP JUMP, GRAVITATIONAL LENSING & SINGULARITY WAVEFRONT -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // -----------------------------------------------------------------
+    // 1. COSMIC INTRO SEQUENCE & HYPERSPACE TRANSITION
+    // -----------------------------------------------------------------
+    const warpCanvas = document.getElementById('warp-canvas');
+    const warpCtx = warpCanvas.getContext('2d');
+    const introOverlay = document.getElementById('intro-overlay');
+
+    let wWidth, wHeight;
+    function resizeWarp() {
+      wWidth = warpCanvas.width = window.innerWidth;
+      wHeight = warpCanvas.height = window.innerHeight;
+    }
+    resizeWarp();
+    window.addEventListener('resize', resizeWarp);
+
+    const warpStars = [];
+    for (let i = 0; i < 380; i++) {
+      warpStars.push({
+        x: (Math.random() - 0.5) * wWidth * 2,
+        y: (Math.random() - 0.5) * wHeight * 2,
+        z: Math.random() * wWidth,
+        pz: 0
+      });
+      warpStars[i].pz = warpStars[i].z;
+    }
+
+    let warpSpeed = 14; // gentle cruise speed behind intro card
+    let warpRunning = true;
+    let introEntered = false;
+    let countdownInterval = null;
+    const totalCountdownSeconds = 4.5;
+
+    function renderWarp() {
+      if (!warpRunning) return;
+
+      warpCtx.fillStyle = 'rgba(3, 4, 8, 0.28)';
+      warpCtx.fillRect(0, 0, wWidth, wHeight);
+
+      const cx = wWidth / 2;
+      const cy = wHeight / 2;
+
+      for (let star of warpStars) {
+        star.pz = star.z;
+        star.z -= warpSpeed;
+
+        if (star.z <= 0) {
+          star.x = (Math.random() - 0.5) * wWidth * 2;
+          star.y = (Math.random() - 0.5) * wHeight * 2;
+          star.z = wWidth;
+          star.pz = star.z;
+        }
+
+        const k = 170 / star.z;
+        const px = star.x * k + cx;
+        const py = star.y * k + cy;
+
+        const pk = 170 / star.pz;
+        const ox = star.x * pk + cx;
+        const oy = star.y * pk + cy;
+
+        warpCtx.beginPath();
+        warpCtx.moveTo(ox, oy);
+        warpCtx.lineTo(px, py);
+        warpCtx.strokeStyle = Math.random() > 0.4 ? '#C19A6B' : (Math.random() > 0.5 ? '#8C5B3E' : '#F1F5F9');
+        warpCtx.lineWidth = Math.min(2.5, (1 - star.z / wWidth) * 3);
+        warpCtx.stroke();
+      }
+
+      requestAnimationFrame(renderWarp);
+    }
+    requestAnimationFrame(renderWarp);
+
+    // Auto-enter countdown handler
+    function startIntroCountdown() {
+      const progressBar = document.getElementById('intro-progress-bar');
+      const countdownText = document.getElementById('intro-countdown-text');
+      const startTime = performance.now();
+      const durationMs = totalCountdownSeconds * 1000;
+
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        if (introEntered) {
+          clearInterval(countdownInterval);
+          return;
+        }
+        const elapsed = performance.now() - startTime;
+        const remaining = Math.max(0, (durationMs - elapsed) / 1000);
+        const progress = Math.min(100, (elapsed / durationMs) * 100);
+
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (countdownText) countdownText.innerText = `Auto-entering in ${remaining.toFixed(1)}s...`;
+
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+          enterPortfolio();
+        }
+      }, 50);
+    }
+    startIntroCountdown();
+
+    // Trigger smooth transition into portfolio
+    function enterPortfolio() {
+      if (introEntered) return;
+      introEntered = true;
+
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      const enterBtn = document.getElementById('enter-portfolio-btn');
+      if (enterBtn) {
+        enterBtn.innerHTML = `
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <span class="w-4 h-4 border-2 border-void-black border-t-transparent rounded-full animate-spin"></span>
+            <span>WARPING INTO PORTFOLIO...</span>
+          </span>
+        `;
+      }
+
+      // Momentary hyperspace speed boost
+      warpSpeed = 52;
+
+      // Smooth exit transition on overlay
+      if (introOverlay) {
+        introOverlay.classList.add('intro-exit');
+      }
+
+      // Smooth resolve on main portfolio
+      const mainWrapper = document.getElementById('main-portfolio-wrapper');
+      if (mainWrapper) {
+        mainWrapper.classList.add('portfolio-revealing');
+      }
+
+      setTimeout(() => {
+        if (introOverlay) {
+          introOverlay.style.display = 'none';
+        }
+        warpRunning = false;
+        showToast("⏣ SYSTEM ONLINE · Welcome to Raj Badgujar's Portfolio");
+      }, 850);
+    }
+
+    // Keyboard trigger: Enter or Spacebar to enter
+    window.addEventListener('keydown', (e) => {
+      if (!introEntered && (e.key === 'Enter' || e.key === ' ')) {
+        if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          enterPortfolio();
+        }
+      }
+    });
+
+    // Replay intro sequence function
+    function replayIntro() {
+      introEntered = false;
+      const enterBtn = document.getElementById('enter-portfolio-btn');
+      if (enterBtn) {
+        enterBtn.innerHTML = `
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <span>ENTER PORTFOLIO</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+          </span>
+          <div class="absolute inset-0 bg-white/25 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+        `;
+      }
+
+      const progressBar = document.getElementById('intro-progress-bar');
+      if (progressBar) progressBar.style.width = '0%';
+
+      if (introOverlay) {
+        introOverlay.classList.remove('intro-exit');
+        introOverlay.style.display = 'flex';
+      }
+
+      const mainWrapper = document.getElementById('main-portfolio-wrapper');
+      if (mainWrapper) {
+        mainWrapper.classList.remove('portfolio-revealing');
+      }
+
+      warpSpeed = 14;
+      if (!warpRunning) {
+        warpRunning = true;
+        requestAnimationFrame(renderWarp);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      startIntroCountdown();
+    }
+
+    // -----------------------------------------------------------------
+    // 2. INTERACTIVE ASTROMETRIC CANVAS (MILKY WAY & GRAVITATIONAL LENSING)
+    // -----------------------------------------------------------------
+    const canvas = document.getElementById('astrometric-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function resizeAstrometric() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    }
+
+    // Stellar Particles & Quantum Embers
+    const particles = [];
+    function initParticles() {
+      particles.length = 0;
+      const count = Math.min(320, Math.floor((width * height) / 3800));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          origX: 0,
+          origY: 0,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() < 0.88 ? (Math.random() * 0.7 + 0.35) : (Math.random() * 0.6 + 0.8),
+          alpha: Math.random() * 0.45 + 0.15,
+          color: Math.random() > 0.7 ? '#C19A6B' : (Math.random() > 0.5 ? '#8C5B3E' : '#F1F5F9'),
+          pulse: Math.random() * Math.PI
+        });
+        particles[i].origX = particles[i].x;
+        particles[i].origY = particles[i].y;
+      }
+    }
+
+    let orbitAngle = 0;
+
+    function renderAstrometric() {
+      ctx.clearRect(0, 0, width, height);
+
+      // A. Natural Milky Way Galaxy Core & Dust Lane
+      const grad = ctx.createLinearGradient(0, height, width, 0);
+      grad.addColorStop(0.0, 'transparent');
+      grad.addColorStop(0.3, 'rgba(58, 26, 30, 0.06)');  // Dark crimson dust
+      grad.addColorStop(0.48, 'rgba(78, 47, 32, 0.08)');  // Deep copper
+      grad.addColorStop(0.55, 'rgba(140, 91, 62, 0.09)'); // Soft bronze
+      grad.addColorStop(0.65, 'rgba(193, 154, 107, 0.07)');// Desaturated golden dust
+      grad.addColorStop(1.0, 'transparent');
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+
+      // B. Galactic Bulge Glow
+      const coreX = width * 0.65;
+      const coreY = height * 0.4;
+      const coreGlow = ctx.createRadialGradient(coreX, coreY, 20, coreX, coreY, Math.max(width, height) * 0.4);
+      coreGlow.addColorStop(0.0, 'rgba(193, 154, 107, 0.09)');
+      coreGlow.addColorStop(0.35, 'rgba(140, 91, 62, 0.06)');
+      coreGlow.addColorStop(0.65, 'rgba(58, 26, 30, 0.04)');
+      coreGlow.addColorStop(1.0, 'transparent');
+      ctx.fillStyle = coreGlow;
+      ctx.fillRect(0, 0, width, height);
+
+      // C. Quantum Orbit Map & Telemetry Lines
+      orbitAngle += 0.0008;
+      ctx.save();
+      ctx.translate(coreX, coreY);
+      ctx.rotate(orbitAngle);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 0.8;
+      ctx.setLineDash([4, 14]);
+
+      ctx.beginPath();
+      ctx.ellipse(0, 0, width * 0.4, width * 0.18, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.ellipse(0, 0, width * 0.58, width * 0.28, Math.PI / 4, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // D. Particle Tide & Gravitational Lensing Drag towards Cursor
+      for (let p of particles) {
+        p.pulse += 0.02;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        // Gravitational Lens Bending toward Mouse
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const dist = Math.hypot(dx, dy);
+
+        let renderX = p.x;
+        let renderY = p.y;
+
+        // Simulated gravitational lens pull within 200px
+        if (dist < 200 && dist > 1) {
+          const force = (1 - dist / 200) * 14;
+          renderX += (dx / dist) * force;
+          renderY += (dy / dist) * force;
+        }
+
+        const alpha = p.alpha + Math.sin(p.pulse) * 0.15;
+        ctx.beginPath();
+        ctx.arc(renderX, renderY, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0.1, alpha);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      requestAnimationFrame(renderAstrometric);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeAstrometric();
+      resizeWarp();
+    });
+    resizeAstrometric();
+    renderAstrometric();
+
+    // -----------------------------------------------------------------
+    // 3. DIMENSION-WARP CURSOR & ASTROPHYSICAL SPACE TERMS PROJECTION
+    // -----------------------------------------------------------------
+    const cursor = document.getElementById('warp-cursor');
+    const cursorDot = document.getElementById('warp-cursor-dot');
+    const cursorTel = document.getElementById('warp-cursor-telemetry');
+
+    const spaceTerms = [
+      "ACADEMIC VECTOR // B.TECH CGPA 8.73",
+      "CET APERTURE // 90.00 %ile [MHT-CET]",
+      "SSC ORBITAL VECTOR // 89.00% PASS",
+      "HSC ESCAPE TRAJECTORY // 78.17%",
+      "CORE FUNDAMENTAL // DSA [O(log N)]",
+      "CORE FUNDAMENTAL // DBMS & SQL SCHEMAS",
+      "CORE FUNDAMENTAL // OPERATING SYSTEMS (OS)",
+      "CORE FUNDAMENTAL // OOP & POLYMORPHISM",
+      "SYSTEM KERNEL // C & LOW-LEVEL MEMORY",
+      "VIRTUAL RUNTIME // JAVA ARCHITECTURE",
+      "DATABASE FLUX // MYSQL & SQL SERVER",
+      "WARP ENGINE // TAILWIND CSS & REACT",
+      "EVENT HORIZON // ALUMNI CONNECT PORTAL",
+      "PNEUMATIC DRIFT // KINETIC CORRIDOR [WINNER]",
+      "INNOVATION APOGEE // 'FUND MY CRAZY 2026'",
+      "TELEMETRY STREAM // REAL-TIME ANALYTICS 100ms",
+      "CODECHEF SATELLITE // PROBLEM SOLVER VERIFIED",
+      "TECH MAHINDRA BADGE // SOFTWARE FOUNDATIONS",
+      "COMMUNICATION BEACON // +91 9764494400",
+      "SIGNAL RECEPTOR // RAJBADGUJAR450@GMAIL.COM",
+      "COORDINATE ORIGIN // MAHARASHTRA, INDIA",
+      "NEURAL APERTURE // RAJ AI SYNCHRONIZED",
+      "GRAVITATIONAL STATUS // OPEN FOR INTERNSHIPS",
+      "SOLAR ORBIT MAPPING // 1.000 AU HELIO"
+    ];
+
+    let currentTerm = "[RA 17h · DEC -29°]";
+    let lastTermChange = 0;
+    let isHoveringInteractive = false;
+
+    function getRandomSpaceTerm() {
+      return spaceTerms[Math.floor(Math.random() * spaceTerms.length)];
+    }
+
+    let curX = 0, curY = 0;
+    let targetX = 0, targetY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      cursorDot.style.transform = `translate(${targetX}px, ${targetY}px)`;
+      
+      const now = performance.now();
+      const raHours = Math.floor((targetX / window.innerWidth) * 24);
+      const decDegrees = Math.floor(((targetY / window.innerHeight) - 0.5) * 180);
+
+      // Check if mouse is hovering over interactive elements or GeeksforGeeks links
+      const hoveredElement = document.elementFromPoint(targetX, targetY);
+      const gfgLink = hoveredElement ? hoveredElement.closest('[data-gfg]') : null;
+      const isInteractive = hoveredElement && (
+        hoveredElement.closest('a, button, input, select, textarea, .quantum-card, [data-tilt], img, label, span')
+      );
+
+      if (gfgLink) {
+        isHoveringInteractive = true;
+        cursor.classList.add('cursor-hover');
+        cursorTel.classList.add('projecting-term');
+        currentTerm = `⏣ GEEKSFORGEEKS // ${gfgLink.getAttribute('data-gfg').toUpperCase()} ↗`;
+        lastTermChange = now;
+      } else if (isInteractive) {
+        if (!isHoveringInteractive || now - lastTermChange > 800) {
+          isHoveringInteractive = true;
+          cursor.classList.add('cursor-hover');
+          cursorTel.classList.add('projecting-term');
+          currentTerm = `⏣ ${getRandomSpaceTerm()}`;
+          lastTermChange = now;
+        }
+      } else {
+        if (isHoveringInteractive) {
+          isHoveringInteractive = false;
+          cursor.classList.remove('cursor-hover');
+          cursorTel.classList.remove('projecting-term');
+        }
+        if (now - lastTermChange > 2400) {
+          currentTerm = `[RA ${raHours}h · DEC ${decDegrees > 0 ? '+' : ''}${decDegrees}°]`;
+          lastTermChange = now;
+        }
+      }
+
+      cursorTel.innerText = currentTerm;
+      cursorTel.style.transform = `translate(${targetX}px, ${targetY}px)`;
+    });
+
+    function updateCursor() {
+      curX += (targetX - curX) * 0.2;
+      curY += (targetY - curY) * 0.2;
+      cursor.style.transform = `translate(${curX}px, ${curY}px)`;
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    // Gravitational Click Singularity Wavefront
+    window.addEventListener('click', (e) => {
+      const wave = document.createElement('div');
+      wave.classList.add('singularity-wave');
+      wave.style.left = e.clientX + 'px';
+      wave.style.top = e.clientY + 'px';
+      document.body.appendChild(wave);
+
+      setTimeout(() => {
+        wave.remove();
+      }, 700);
+    });
+
+    // -----------------------------------------------------------------
+    // 4. MICRO-TILT PARALLAX & ATMOSPHERIC LENS FLARE (MAX 4°)
+    // -----------------------------------------------------------------
+    const tiltCards = document.querySelectorAll('[data-tilt]');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = -((y - centerY) / centerY) * 3.8;
+        const rotateY = ((x - centerX) / centerX) * 3.8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    // -----------------------------------------------------------------
+    // 5. MAGNETIC BUTTON PULL (20PX THRESHOLD WITH DAMPED SNAP)
+    // -----------------------------------------------------------------
+    const magneticButtons = document.querySelectorAll('.magnetic-btn');
+    magneticButtons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const btnCenterX = rect.left + rect.width / 2;
+        const btnCenterY = rect.top + rect.height / 2;
+        const deltaX = e.clientX - btnCenterX;
+        const deltaY = e.clientY - btnCenterY;
+        const distance = Math.hypot(deltaX, deltaY);
+
+        if (distance < 55) {
+          btn.style.transform = `translate(${deltaX * 0.22}px, ${deltaY * 0.22}px)`;
+        }
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    // -----------------------------------------------------------------
+    // 6. STAGGERED "GRAVITY WELL" SCROLL & TELEMETRY TICKER ROLLS
+    // -----------------------------------------------------------------
+    const gravityObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          const tickers = entry.target.querySelectorAll('.telemetry-ticker');
+          tickers.forEach(ticker => {
+            if (!ticker.dataset.rolled) {
+              ticker.dataset.rolled = 'true';
+              runTelemetryTicker(ticker);
+            }
+          });
+        }
+      });
+    }, {
+      threshold: 0.14,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.gravity-well').forEach(el => gravityObserver.observe(el));
+
+    function runTelemetryTicker(element) {
+      const target = element.dataset.target || '01';
+      let iterations = 0;
+      const chars = '0123456789';
+      const interval = setInterval(() => {
+        iterations++;
+        element.innerText = chars[Math.floor(Math.random() * chars.length)] + chars[Math.floor(Math.random() * chars.length)];
+        if (iterations >= 8) {
+          clearInterval(interval);
+          element.innerText = target;
+        }
+      }, 35);
+    }
+
+    // -----------------------------------------------------------------
+    // 7. SECTION SWITCH WAVEFRONT COLLAPSE & EXPANSION
+    // -----------------------------------------------------------------
+    document.querySelectorAll('.nav-singularity-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          // Trigger virtual wavefront pulse
+          const pulse = document.createElement('div');
+          pulse.classList.add('singularity-wave');
+          pulse.style.left = (window.innerWidth / 2) + 'px';
+          pulse.style.top = (window.innerHeight / 2) + 'px';
+          document.body.appendChild(pulse);
+          setTimeout(() => pulse.remove(), 700);
+        }
+      });
+    });
+
+    // -----------------------------------------------------------------
+    // 8. COPY EMAIL & TOAST NOTIFICATION
+    // -----------------------------------------------------------------
+    function copyEmail() {
+      const email = 'rajbadgujar450@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Coordinates copied: ' + email);
+      }).catch(err => {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('Coordinates copied: ' + email);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // -----------------------------------------------------------------
+    // 9. COPY PHONE NUMBER
+    // -----------------------------------------------------------------
+    function copyPhone() {
+      const phone = '+91 9764494400';
+      const cleanPhone = '+919764494400';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cleanPhone).then(() => {
+          showToast('Direct Cell Copied: ' + phone);
+        }).catch(() => fallbackCopy(cleanPhone, 'Direct Cell Copied: ' + phone));
+      } else {
+        fallbackCopy(cleanPhone, 'Direct Cell Copied: ' + phone);
+      }
+    }
+
+    function fallbackCopy(text, toastMsg) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast(toastMsg);
+    }
+
+    // -----------------------------------------------------------------
+    // 10. CONTACT FORM TRANSMISSION HANDLER
+    // -----------------------------------------------------------------
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const reason = document.getElementById('contact-reason').value;
+      const message = document.getElementById('contact-message').value.trim();
+
+      const subject = encodeURIComponent(`[Transmission from Portfolio] ${reason} - ${name}`);
+      const body = encodeURIComponent(`Name / Company: ${name}\nEmail: ${email}\nReason for Contact: ${reason}\n\nTransmission Content:\n${message}\n\n--\nTransmitted via Raj Badgujar's Quantum Portfolio`);
+
+      showToast('Signal Transmitted! Launching mail protocol...');
+      
+      setTimeout(() => {
+        window.location.href = `mailto:rajbadgujar450@gmail.com?subject=${subject}&body=${body}`;
+      }, 700);
+
+      e.target.reset();
+    }
+
+    // -----------------------------------------------------------------
+    // 11. RAJ AI // CUSTOM NEURAL CHATBOT ENGINE
+    // -----------------------------------------------------------------
+    function toggleChatbot() {
+      const chatWin = document.getElementById('chatbot-window');
+      if (chatWin.classList.contains('hidden')) {
+        chatWin.classList.remove('hidden');
+        setTimeout(() => {
+          chatWin.classList.remove('scale-95', 'opacity-0');
+          chatWin.classList.add('scale-100', 'opacity-100');
+          const input = document.getElementById('chatbot-input');
+          if (input) input.focus();
+        }, 20);
+      } else {
+        chatWin.classList.remove('scale-100', 'opacity-100');
+        chatWin.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          chatWin.classList.add('hidden');
+        }, 250);
+      }
+    }
+
+    function handleChatbotSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatbot-input');
+      const query = input.value.trim();
+      if (!query) return;
+      input.value = '';
+      askChatbotQuestion(query);
+    }
+
+    function askChatbotQuestion(query) {
+      const messagesContainer = document.getElementById('chatbot-messages');
+      if (!messagesContainer) return;
+
+      // Ensure chatbot is open
+      const chatWin = document.getElementById('chatbot-window');
+      if (chatWin.classList.contains('hidden')) {
+        toggleChatbot();
+      }
+
+      // 1. Append User Message Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'flex items-start justify-end gap-2 text-right';
+      userBubble.innerHTML = `
+        <div class="p-2.5 rounded-2xl rounded-tr-sm bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 leading-relaxed max-w-[85%] font-sans text-xs shadow-sm">
+          ${escapeHtml(query)}
+        </div>
+      `;
+      messagesContainer.appendChild(userBubble);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // 2. Append Typing Indicator
+      const typingIndicator = document.createElement('div');
+      typingIndicator.id = 'chatbot-typing-indicator';
+      typingIndicator.className = 'flex items-start gap-2.5';
+      typingIndicator.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-[10px] font-mono text-cyan-300 shrink-0 mt-0.5">
+          AI
+        </div>
+        <div class="p-2.5 px-3 rounded-2xl rounded-tl-sm bg-white/[0.04] border border-white/10 text-telemetry-dim text-xs font-mono flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse delay-150"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse delay-300"></span>
+          <span class="ml-1 text-[11px]">Processing neural telemetry...</span>
+        </div>
+      `;
+      messagesContainer.appendChild(typingIndicator);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // 3. Generate response after brief realistic thinking delay
+      setTimeout(() => {
+        const typingEl = document.getElementById('chatbot-typing-indicator');
+        if (typingEl) typingEl.remove();
+
+        const responseHtml = getChatbotResponse(query);
+        const botBubble = document.createElement('div');
+        botBubble.className = 'flex items-start gap-2.5';
+        botBubble.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-[10px] font-mono text-cyan-300 shrink-0 mt-0.5">
+            AI
+          </div>
+          <div class="p-3 rounded-2xl rounded-tl-sm bg-white/[0.04] border border-white/10 text-telemetry-slate leading-relaxed shadow-sm font-sans text-xs space-y-2 max-w-[88%]">
+            ${responseHtml}
+          </div>
+        `;
+        messagesContainer.appendChild(botBubble);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 450);
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function getChatbotResponse(rawQuery) {
+      const q = rawQuery.toLowerCase();
+
+      // 1. Core Fundamentals & Coursework Subjects
+      if (q.includes('fundamental') || q.includes('subject') || q.includes('coursework') || q.includes('dsa') || q.includes('dbms') || q.includes('operating system') || (q.includes('os') && q.split(/\W+/).includes('os')) || q.includes('oop') || q.includes('data structure')) {
+        return `
+          <div>
+            <div class="font-bold text-fuchsia-300 text-[13px] flex items-center gap-1.5 mb-1.5">
+              <span>📚 Core Fundamentals // Computer Science Pillars:</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-void-black/90 border border-white/10 font-mono text-xs leading-loose mb-2 text-slate-300 shadow-inner">
+              <div class="text-cyan-400 font-bold text-xs mb-1">CORE FUNDAMENTALS</div>
+              ├── <strong class="text-fuchsia-300">Data Structures &amp; Algorithms (DSA)</strong><br>
+              ├── <strong class="text-amber-300">Database Management Systems (DBMS)</strong><br>
+              ├── <strong class="text-emerald-300">Operating Systems (OS)</strong><br>
+              └── <strong class="text-sky-300">Object-Oriented Programming (OOP)</strong>
+            </div>
+            <p class="text-telemetry-bright text-[11.5px] leading-relaxed">
+              Raj's engineering philosophy is anchored in these four fundamentals: rigorous algorithmic optimization in DSA, ACID relational schemas in DBMS, process/memory concurrency in OS, and modular architectural decoupling in OOP.
+            </p>
+          </div>
+        `;
+      }
+
+      // 2. Complete Academic Track & Milestone Scores (CGPA, CET, 10th SSC, 12th HSC)
+      if (q.includes('score') || q.includes('marks') || q.includes('mark') || q.includes('10th') || q.includes('ssc') || q.includes('12th') || q.includes('hsc') || q.includes('cet') || q.includes('percentile') || q.includes('cgpa') || q.includes('gpa') || q.includes('grade') || q.includes('academic') || q.includes('college') || q.includes('education') || q.includes('btech') || q.includes('degree')) {
+        return `
+          <div>
+            <div class="font-bold text-amber-300 text-[13px] flex items-center gap-1.5 mb-1.5">
+              <span>🎓 Complete Academic Track & Milestone Scores:</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px] font-mono mb-2">
+              <div class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/25">
+                <div class="text-[9.5px] text-amber-400 uppercase font-semibold">B.Tech IT (Current):</div>
+                <strong class="text-white text-xs">8.73 / 10.00 CGPA</strong>
+              </div>
+              <div class="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/25">
+                <div class="text-[9.5px] text-cyan-400 uppercase font-semibold">MHT-CET Entrance:</div>
+                <strong class="text-white text-xs">90.00 Percentile</strong>
+              </div>
+              <div class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/25">
+                <div class="text-[9.5px] text-emerald-400 uppercase font-semibold">10th SSC Board:</div>
+                <strong class="text-white text-xs">89.00% (Distinction)</strong>
+              </div>
+              <div class="p-2 rounded-lg bg-sky-500/10 border border-sky-500/25">
+                <div class="text-[9.5px] text-sky-400 uppercase font-semibold">12th HSC Board:</div>
+                <strong class="text-white text-xs">78.17% (First Class)</strong>
+              </div>
+            </div>
+            <p class="text-telemetry-bright text-[11.5px] leading-relaxed">
+              Raj has maintained an exceptional record from secondary school (89%), through engineering entrance examinations (90 percentile), to undergraduate engineering (8.73 CGPA).
+            </p>
+          </div>
+        `;
+      }
+
+      // 2. Skills & Technologies
+      if (q.includes('skill') || q.includes('tech') || q.includes('language') || q.includes('stack') || (q.includes('c') && q.length < 5) || q.includes('java') || q.includes('sql') || q.includes('react') || q.includes('node') || q.includes('framework') || q.includes('tool') || q.includes('database')) {
+        return `
+          <div>
+            <div class="font-bold text-cyan-300 text-[13px] mb-1">⚡ Core Technical Arsenal:</div>
+            <p class="text-telemetry-bright mb-2">Raj focuses on disciplined systems programming, relational architecture, and clean full-stack web engineering:</p>
+            <ul class="space-y-1.5 text-[11.5px] font-mono text-telemetry-dim">
+              <li><strong class="text-white">Languages:</strong> <a href="https://www.geeksforgeeks.org/c-programming-language/" target="_blank" class="text-cyan-300 underline">C</a>, <a href="https://www.geeksforgeeks.org/java/" target="_blank" class="text-rose-300 underline">Java</a>, <a href="https://www.geeksforgeeks.org/mysql-tutorial/" target="_blank" class="text-amber-300 underline">MySQL</a>, <a href="https://www.geeksforgeeks.org/sql-server/" target="_blank" class="text-rose-300 underline">SQL Server</a>, <a href="https://www.geeksforgeeks.org/javascript/" target="_blank" class="text-yellow-300 underline">JavaScript</a>, <a href="https://www.geeksforgeeks.org/html-tutorial/" target="_blank" class="text-orange-300 underline">HTML5</a>, <a href="https://www.geeksforgeeks.org/css-tutorial/" target="_blank" class="text-sky-300 underline">CSS3</a></li>
+              <li><strong class="text-white">Frameworks:</strong> <a href="https://www.geeksforgeeks.org/tailwind-css/" target="_blank" class="text-teal-300 underline">Tailwind CSS</a>, <a href="https://www.geeksforgeeks.org/react/" target="_blank" class="text-cyan-300 underline">React</a>, <a href="https://www.geeksforgeeks.org/nodejs/" target="_blank" class="text-emerald-300 underline">Node.js</a>, <a href="https://www.geeksforgeeks.org/express-js/" target="_blank" class="text-violet-300 underline">Express</a></li>
+              <li><strong class="text-white">Core Pillars:</strong> <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" class="text-fuchsia-300 underline">DSA</a>, <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" class="text-amber-300 underline">DBMS</a>, <a href="https://www.geeksforgeeks.org/operating-systems/" target="_blank" class="text-emerald-300 underline">OS</a>, <a href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" target="_blank" class="text-sky-300 underline">OOP</a></li>
+            </ul>
+            <div class="mt-2 text-[10.5px] text-emerald-300 bg-emerald-500/10 p-1.5 px-2 rounded border border-emerald-500/25 flex items-center gap-1.5">
+              <span>💡</span>
+              <span>Tip: Click any badge across the website to open its GeeksforGeeks tutorial!</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // 3. Projects
+      if (q.includes('project') || q.includes('work') || q.includes('portfolio') || q.includes('alumni') || q.includes('kinetic') || q.includes('pneumatic') || q.includes('dashboard') || q.includes('corridor') || q.includes('app')) {
+        return `
+          <div>
+            <div class="font-bold text-purple-300 text-[13px] mb-1">🚀 Featured Engineering Projects:</div>
+            <div class="space-y-2 mt-1.5 text-[11.5px]">
+              <div class="p-2 rounded bg-purple-500/10 border border-purple-500/25">
+                <strong class="text-white">1. Alumni Connect Portal</strong>
+                <p class="text-telemetry-dim">Centralized networking & mentorship platform bridging students with alumni for referrals and career guidance. Built with <em>Java, MySQL, HTML5, Tailwind CSS, JavaScript</em> with robust RBAC and normalized schemas.</p>
+              </div>
+              <div class="p-2 rounded bg-cyan-500/10 border border-cyan-500/25">
+                <strong class="text-white">2. The Kinetic-Pneumatic Corridor</strong>
+                <p class="text-telemetry-dim">Sustainable transit & micro-infrastructure concept with capsule differential simulation. Won the <em>Institutional Innovation Challenge 2024</em>.</p>
+              </div>
+              <div class="p-2 rounded bg-amber-500/10 border border-amber-500/25">
+                <strong class="text-white">3. Interactive Real-Time Analytics Dashboard</strong>
+                <p class="text-telemetry-dim">High-frequency telemetry pipeline and data visualization interface with custom SQL aggregations and sub-100ms render latency.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 4. Contact, Phone, Mobile, Email
+      if (q.includes('contact') || q.includes('phone') || q.includes('mobile') || q.includes('call') || q.includes('whatsapp') || q.includes('number') || q.includes('email') || q.includes('reach') || q.includes('mail') || q.includes('telemetry') || q.includes('message')) {
+        return `
+          <div>
+            <div class="font-bold text-emerald-300 text-[13px] mb-1">📞 Direct Coordinates & Contact Channels:</div>
+            <div class="space-y-2 mt-1.5 text-[11.5px] font-mono">
+              <div class="p-2 rounded bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between">
+                <div>
+                  <div class="text-[10px] text-emerald-400">MOBILE / WHATSAPP:</div>
+                  <a href="tel:+919764494400" class="text-white font-bold hover:underline">+91 9764494400</a>
+                </div>
+                <button onclick="copyPhone()" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 text-[10px]">Copy</button>
+              </div>
+              <div class="p-2 rounded bg-amber-500/10 border border-amber-500/25 flex items-center justify-between">
+                <div>
+                  <div class="text-[10px] text-amber-400">OFFICIAL EMAIL:</div>
+                  <a href="mailto:rajbadgujar450@gmail.com" class="text-white font-bold hover:underline">rajbadgujar450@gmail.com</a>
+                </div>
+                <button onclick="copyEmail()" class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 text-[10px]">Copy</button>
+              </div>
+              <div class="p-2 rounded bg-white/[0.03] border border-white/10 text-telemetry-dim">
+                Location: <strong class="text-white">Maharashtra, India</strong> (Open to Remote / Relocation)
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 5. Hire / Availability / Job / Internship
+      if (q.includes('hire') || q.includes('job') || q.includes('intern') || q.includes('role') || q.includes('opportunit') || q.includes('available') || q.includes('status') || q.includes('work with') || q.includes('career')) {
+        return `
+          <div>
+            <div class="font-bold text-sky-300 text-[13px] mb-1">💼 Employment & Internship Availability:</div>
+            <p class="text-telemetry-bright mb-2">Raj is <strong>actively open</strong> for:</p>
+            <ul class="list-disc list-inside space-y-1 text-[11.5px] text-telemetry-dim mb-2">
+              <li><strong class="text-white">Software Engineering Internships</strong></li>
+              <li><strong class="text-white">Junior Software Engineer / Developer Roles</strong></li>
+              <li><strong class="text-white">Systems & Database Engineering Collaboration</strong></li>
+            </ul>
+            <p class="text-telemetry-bright text-[11.5px]">Open to <strong>Remote</strong> and <strong>On-Site / Relocation</strong> opportunities. Direct phone: <a href="tel:+919764494400" class="text-cyan-300 font-mono font-bold hover:underline">+91 9764494400</a>.</p>
+          </div>
+        `;
+      }
+
+      // 6. About Raj / Bio / Who is Raj
+      if (q.includes('who is') || q.includes('about') || q.includes('raj') || q.includes('bio') || q.includes('background') || q.includes('profile') || q.includes('tell me about')) {
+        return `
+          <div>
+            <div class="font-bold text-white text-[13px] mb-1">👤 Dossier: Raj Badgujar</div>
+            <p class="text-telemetry-bright leading-relaxed text-[11.5px]">
+              Raj is a forward-thinking <strong>Information Technology undergraduate</strong> and <strong>Systems & Software Developer</strong> from Maharashtra, India, with an outstanding <strong>8.73 CGPA</strong>.
+            </p>
+            <p class="text-telemetry-dim leading-relaxed text-[11px] mt-1.5">
+              He thrives at the intersection of low-level systems logic, relational data integrity (SQL/Java/C), and modern reactive frontends (Tailwind/React). When not writing production code, he explores astronomy and astrophysics concepts.
+            </p>
+          </div>
+        `;
+      }
+
+      // 7. Space Theme / Solar System / Orbits / Astrometry
+      if (q.includes('solar') || q.includes('orbit') || q.includes('space') || q.includes('planet') || q.includes('milky way') || q.includes('theme') || q.includes('sun') || q.includes('earth') || q.includes('mars') || q.includes('jupiter') || q.includes('saturn') || q.includes('mercury') || q.includes('venus')) {
+        return `
+          <div>
+            <div class="font-bold text-amber-300 text-[13px] mb-1">🌌 The Quantum Celestial Fold System:</div>
+            <p class="text-telemetry-bright text-[11.5px]">
+              This portfolio simulates deep-space astrometry with an interactive Milky Way canvas, gravitational lensing, and mathematically scaled solar orbits:
+            </p>
+            <div class="mt-1.5 grid grid-cols-2 gap-1 text-[10.5px] font-mono text-telemetry-dim">
+              <span>☀️ Sol (Sun) · Core</span>
+              <span>☿ Mercury · 0.39 AU</span>
+              <span>♀ Venus · 0.72 AU</span>
+              <span>♁ Earth · 1.00 AU</span>
+              <span>♂ Mars · 1.52 AU</span>
+              <span>♃ Jupiter · 5.20 AU</span>
+              <span>♄ Saturn · 9.58 AU</span>
+            </div>
+            <p class="text-[11px] text-cyan-300 mt-2">Move your cursor across any element on the page to project real astrophysical telemetry terms!</p>
+          </div>
+        `;
+      }
+
+      // 8. Greetings
+      if (q.includes('hi') || q.includes('hello') || q.includes('hey') || q.includes('namaste') || q.includes('good morning') || q.includes('good afternoon') || q.includes('good evening')) {
+        return `
+          <div>
+            <p class="text-telemetry-bright text-[12px] mb-1.5">Hello there! Welcome to Raj Badgujar's cosmic portfolio.</p>
+            <p class="text-telemetry-dim text-[11.5px]">I can tell you about Raj's <strong>CGPA (8.73)</strong>, <strong>core programming skills</strong>, <strong>featured projects</strong>, or his direct contact details (<strong>+91 9764494400</strong>). What would you like to explore?</p>
+          </div>
+        `;
+      }
+
+      // Fallback
+      return `
+        <div>
+          <p class="text-telemetry-bright text-[12px] mb-1.5">Thank you for your transmission!</p>
+          <p class="text-telemetry-dim text-[11.5px] mb-2">I am synchronized with Raj's dossier. You can ask me:</p>
+          <div class="flex flex-wrap gap-1 font-mono text-[10px]">
+            <button onclick="askChatbotQuestion('What are Raj\\'s core fundamentals and subjects?')" class="px-2 py-0.5 rounded bg-fuchsia-500/15 text-fuchsia-300 border border-fuchsia-500/25">📚 Core Fundamentals</button>
+            <button onclick="askChatbotQuestion('What are Raj\\'s 10th SSC, 12th HSC, CET, and CGPA marks?')" class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/25">🎯 Scores (8.73 / 90%ile)</button>
+            <button onclick="askChatbotQuestion('What are Raj\\'s core skills and technologies?')" class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/25">⚡ Skills &amp; Stack</button>
+            <button onclick="askChatbotQuestion('Tell me about Raj\\'s featured projects.')" class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/25">🚀 Projects</button>
+            <button onclick="askChatbotQuestion('What is Raj\\'s phone number and email?')" class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">📞 Phone: 9764494400</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
